@@ -22,6 +22,12 @@ function RegisterForm() {
       payload: {
         username: username,
         password: password,
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
+        city: city,
+        state: state,
+        zip: zip
       },
     });
   }; // end registerUser
@@ -62,11 +68,11 @@ function RegisterForm() {
         <label htmlFor="first_name">
           First Name:
           <input
-            type="first_name"
+            type="text"
             name="first_name"
             value={first_name}
             required
-            onChange={(event) => setState(event.target.value)}
+            onChange={(event) => setFirstName(event.target.value)}
           />
         </label>
       </div>
@@ -74,7 +80,7 @@ function RegisterForm() {
         <label htmlFor="last_name">
           Last Name:
           <input
-            type="last_name"
+            type="text"
             name="last_name"
             value={last_name}
             required
@@ -86,7 +92,7 @@ function RegisterForm() {
         <label htmlFor="email">
           Email:
           <input
-            type="email"
+            type="text"
             name="email"
             value={email}
             required
@@ -98,7 +104,7 @@ function RegisterForm() {
         <label htmlFor="city">
           City:
           <input
-            type="city"
+            type="text"
             name="city"
             value={city}
             required
@@ -110,7 +116,7 @@ function RegisterForm() {
         <label htmlFor="state">
           State:
           <input
-            type="state"
+            type="text"
             name="state"
             value={state}
             required
@@ -122,7 +128,7 @@ function RegisterForm() {
         <label htmlFor="zip">
           Zip:
           <input
-            type="zip"
+            type="text"
             name="zip"
             value={zip}
             required
