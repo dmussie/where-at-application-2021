@@ -126,17 +126,18 @@ Customize this ReadMe and the code comments in this project to read less like a 
 # Get started
 [x] - Create a new database called `where_at` and create a `user` table:
 [x] - Create rest of tables for project
-[] - Update user router to account for additional registration information
-[] - Check if user routes have been established
-[] - Check if user authentication is properly established
+[x] - Update user router to account for additional registration information
+[x] - Check if user routes have been established
+[x] - Check if user authentication is properly established
 
 # Concert Search Route
 [] - create concert.router.js
+  [] - link songkick api
   [] - create router.get
   [] - create router.delete
 [] - create concerts.sagas.js
 [] - create concerts.reducer.js
-[] - create SearchConcerts folder and file
+[x] - create SearchConcerts folder and file
 [] - create SearchResults folder and file
 [] - create ConcertDetails folder and file
 [] - create ConcertReview folder and file
