@@ -19,7 +19,7 @@ Before you get started, make sure you have the following software installed on y
 
 ## Create database and table
 
-Create a new database called `prime_app` and create a `user` table:
+[x] - Create a new database called `where_at` and create a `user` table:
 
 ```SQL
 CREATE TABLE "user" (
@@ -29,12 +29,12 @@ CREATE TABLE "user" (
 );
 ```
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+[x] - If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
 
 ## Development Setup Instructions
 
-- Run `npm install`
-- Create a `.env` file at the root of the project and paste this line into the file:
+[x] - Run `npm install`
+[x] - Create a `.env` file at the root of the project and paste this line into the file:
   ```
   SERVER_SESSION_SECRET=superDuperSecret
   ```
@@ -119,3 +119,51 @@ This code is also heavily commented. We recommend reading through the comments, 
 ## Update Documentation
 
 Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+
+
+## Checklist
+
+# Get started
+[x] - Create a new database called `where_at` and create a `user` table:
+[x] - Create rest of tables for project
+[] - Update user router to account for additional registration information
+[] - Check if user routes have been established
+[] - Check if user authentication is properly established
+
+# Concert Search Route
+[] - create concert.router.js
+  [] - create router.get
+  [] - create router.delete
+[] - create concerts.sagas.js
+[] - create concerts.reducer.js
+[] - create SearchConcerts folder and file
+[] - create SearchResults folder and file
+[] - create ConcertDetails folder and file
+[] - create ConcertReview folder and file
+[] - update App.js and index.js
+
+# Stretch Goal Favorite Artists
+[] - Create favoriteArtists.router.js
+  [] - create router.post
+  [] - create router.get
+  [] - create router.delete
+[] - Create favorites.saga.js
+[] - Create favorites.reducer.js
+[] - Create FavoriteArtist folder and file
+[] - update App.js and index.js
+
+# Stretch Goal User Venues
+[] - Create userVenues.router.js
+  [] - create router.post
+  [] - create router.get
+  [] - create router.delete
+[] - Create userVenues.saga.js
+[] - Create userVenues.reducer.js
+[] - Create UserVenues folder and file
+[] - update App.js and index.js
+
+# Stretch Miscelaneous Features
+[] - Link Spotify to Sign Up page
+  [] - linked users can bypass search page and navigate to results based on Spotify interests
+[] - Display map of concerts search page
+[] - Material UI styling
