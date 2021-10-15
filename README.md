@@ -126,17 +126,23 @@ Customize this ReadMe and the code comments in this project to read less like a 
 # Get started
 [x] - Create a new database called `where_at` and create a `user` table:
 [x] - Create rest of tables for project
-[] - Update user router to account for additional registration information
-[] - Check if user routes have been established
-[] - Check if user authentication is properly established
+[x] - Update user router to account for additional registration information
+[x] - Check if user routes have been established
+[x] - Check if user authentication is properly established
 
-# Concert Search Route
+
+# Concert/Venue Search Route
 [] - create concert.router.js
+  [] - link songkick api
   [] - create router.get
   [] - create router.delete
+[] - save local Twin Cities venues to table
+  [] - columns: id, songkick_id, venue_name
+  [] - input data based on venue query searches and pulling songkick id's
+  [] - make this a dropdown select input with Twin Cities venues to choose from on the search page 
 [] - create concerts.sagas.js
 [] - create concerts.reducer.js
-[] - create SearchConcerts folder and file
+[x] - create SearchConcerts folder and file
 [] - create SearchResults folder and file
 [] - create ConcertDetails folder and file
 [] - create ConcertReview folder and file
@@ -150,16 +156,6 @@ Customize this ReadMe and the code comments in this project to read less like a 
 [] - Create favorites.saga.js
 [] - Create favorites.reducer.js
 [] - Create FavoriteArtist folder and file
-[] - update App.js and index.js
-
-# Stretch Goal User Venues
-[] - Create userVenues.router.js
-  [] - create router.post
-  [] - create router.get
-  [] - create router.delete
-[] - Create userVenues.saga.js
-[] - Create userVenues.reducer.js
-[] - Create UserVenues folder and file
 [] - update App.js and index.js
 
 # Stretch Miscelaneous Features
