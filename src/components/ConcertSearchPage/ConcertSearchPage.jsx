@@ -1,11 +1,16 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 function ConcertSearchPage() {
     // start with venue and dates search
     // venue and dates search will navigate us to search results page
     // events will be presented in the following search results page
     // which will include name of artist, date and time of show at venue
+
+    const dispatch = useDispatch();
+    const history = useHistory();
     
     const [venueSearch, setVenueSearch] = useState('');
     const [dateOneSearch, setDateOneSearch] = useState('');
@@ -38,7 +43,10 @@ function ConcertSearchPage() {
         axios.get(`/api/concerts/${venueSearch}`)
         .then(response => {
             console.log('response is:', response.data);
+            console.log('search results are:', results);
             setResults(response.data);
+            dispatch({type: 'FETCH_CONCERTS', payload: results})
+            history.push('/searchresults');
         }).catch(error => {
             console.log('error in handleSubmit', error);
         })
@@ -137,7 +145,7 @@ function ConcertSearchPage() {
                  */}
                 <input type="Submit" value="Submit New Search"/>
             </form>
-            {JSON.stringify(results)}
+            {/* {JSON.stringify(results)} */}
         </div>
     
         //map through search results
