@@ -29,6 +29,20 @@ router.get('/venue/:venue', (req, res) => {
     }); 
 });
 
+// get venue id from the venues database to then utilized router.get('/:id')
+router.get('/', (req, res) => {
+    // Add query to get all genres
+    const query = 'SELECT "venue_id" FROM "venues" ORDER BY "name" ASC';
+    pool.query(query)
+      .then( result => {
+        res.send(result.rows);
+      })
+      .catch(err => {
+        console.log('ERROR: Get all genres', err);
+        res.sendStatus(500);
+      })
+  });
+
 // get venue data from songkick
 // req.body???
 router.get('/:id', (req, res) => {
