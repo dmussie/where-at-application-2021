@@ -10,6 +10,7 @@ function* fetchConcerts() {
         };
 
         const response = yield axios.get('/api/concerts', config);
+        console.log(response.data);
 
         yield put({ type: 'SET_CONCERTS', payload: response.data });
     } catch (error) {

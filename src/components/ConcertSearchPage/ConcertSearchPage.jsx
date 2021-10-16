@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 function ConcertSearchPage() {
@@ -15,7 +15,7 @@ function ConcertSearchPage() {
     const [venueSearch, setVenueSearch] = useState('');
     const [dateOneSearch, setDateOneSearch] = useState('');
     const [dateTwoSearch, setDateTwoSearch] = useState('');
-    const [results, setResults] = useState([]);
+    const [results, setResults] = useState({});
 
     // const dataToSend = {venueSearch: venueSearch, 
     //     dateOneSearch: dateOneSearch, 
@@ -45,8 +45,6 @@ function ConcertSearchPage() {
             console.log('response is:', response.data);
             console.log('search results are:', results);
             setResults(response.data);
-            dispatch({type: 'FETCH_CONCERTS', payload: results})
-            history.push('/searchresults');
         }).catch(error => {
             console.log('error in handleSubmit', error);
         })
@@ -55,6 +53,7 @@ function ConcertSearchPage() {
     // for loop/switch statements for venue results
 
     const findAVenue = (event) => {
+        let venueId = [];
         console.log(event);
         console.log(venueSearch);
         event.preventDefault();
@@ -62,12 +61,22 @@ function ConcertSearchPage() {
         
         .then(response => {
             console.log('response is:', response.data);
-            setResults(response.data);
+            console.log('inside response:', response.data.resultsPage.results.venue);
+            
+            //dispatch({type: 'SET_CONCERTS', payload: results})
+            //history.push('/searchresults');
             //for loop here, res.send results (switch statement for mulitple cities)
             //req.user.city!!!! for condition
-            // if(response.data.city.displayName === 'Minneapolis') {
-            //   response.send({event: response.data})  
-            // }
+            const venueArray = response.data.resultsPage.results.venue;
+            for(let i in venueArray) {
+                if(venueArray[i].city.displayName === 'Minneapolis') {
+                   //() => setResults({...results, i: response.data.resultsPage.results.venue.id});
+                   venueId.push(venueArray[i].id);
+                     
+                }
+                console.log('minneapolis venue id', venueId); 
+            }
+            
         }).catch(error => {
             console.log('error in handleSubmit', error);
         })
@@ -145,7 +154,12 @@ function ConcertSearchPage() {
                  */}
                 <input type="Submit" value="Submit New Search"/>
             </form>
-            {/* {JSON.stringify(results)} */}
+            <ul>
+                {/* {results.map((venue) => (
+                    <li key={venue.id}>{venue.id}{venue.displayName}{venue.city.displayName}</li>
+                ))} */}
+            </ul>
+            {JSON.stringify(results)}
         </div>
     
         //map through search results

@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
 import ConcertSearchPage from '../ConcertSearchPage/ConcertSearchPage';
+import SearchResultsPage from '../SearchResultsPage/SearchResultsPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -66,6 +67,13 @@ function App() {
             path="/concertsearch"
           >
             <ConcertSearchPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute 
+            exact 
+            path="/searchresults"
+          >
+            <SearchResultsPage />
           </ProtectedRoute>
 
           <ProtectedRoute
