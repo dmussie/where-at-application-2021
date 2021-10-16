@@ -44,7 +44,7 @@ router.get('/', (req, res) => {
   });
 
 // get venue data from songkick
-// req.body???
+// with venue ids 
 router.get('/:id', (req, res) => {
     console.log('req.params is:', req.params);
     axios.get(`https://api.songkick.com/api/3.0/venues/${req.params.id}.json?apikey=${process.env.SONGKICK_API_KEY}`)

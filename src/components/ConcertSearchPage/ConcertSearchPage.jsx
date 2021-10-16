@@ -17,25 +17,6 @@ function ConcertSearchPage() {
     const [dateTwoSearch, setDateTwoSearch] = useState('');
     const [results, setResults] = useState({});
 
-    // const dataToSend = {venueSearch: venueSearch, 
-    //     dateOneSearch: dateOneSearch, 
-    //     dateTwoSearch: dateTwoSearch};
-
-    // const handleSubmit = (event) => {
-    //     console.log('data to send is:', dataToSend);
-    //     event.preventDefault();
-    //     axios({ 
-    //         method: 'GET',
-    //         url: `https://api.songkick.com/api/3.0/venues/24426.json?apikey=oZibvMeWtrvsIODy`,
-    //         data: dataToSend,
-    //     }).then(response => {
-    //         console.log('response is:', response.data);
-    //         setResults(response.data);
-    //     }).catch(error => {
-    //         console.log('error in handleSubmit', error);
-    //     })
-    // }
-
     const handleSubmit = (event) => {
         console.log(event);
         console.log(venueSearch);
@@ -141,7 +122,8 @@ function ConcertSearchPage() {
                 onChange={(event) => setVenueSearch(event.target.value)}/>
                 <button onClick={findAVenue}>Find A Venue!</button>
             <form onSubmit={handleSubmit}>
-                
+                Venue Dropdown: <select name="venues" id="venues" value={} onChange={}>
+                    </select>
                 Date One:<input placeholder="YYYY-MM-DD" type="text" value={dateOneSearch} 
                 onChange={(event) => setDateOneSearch(event.target.value)}/>
                 Date Two:<input placeholder="YYYY-MM-DD" type="text" value={dateTwoSearch} 
