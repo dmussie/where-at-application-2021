@@ -132,18 +132,17 @@ Customize this ReadMe and the code comments in this project to read less like a 
 
 
 # Concert/Venue Search Route
-[] - create concert.router.js
-  [] - link songkick api
-  [] - create router.get
+[x] - create concert.router.js
+  [x] - link songkick api
+  [x] - create router.get
   [] - create router.delete
 [] - save local Twin Cities venues to table
   [] - columns: id, songkick_id, venue_name
   [] - input data based on venue query searches and pulling songkick id's
-  [] - make this a dropdown select input with Twin Cities venues to choose from on the search page 
 [] - create concerts.sagas.js
 [] - create concerts.reducer.js
 [x] - create SearchConcerts folder and file
-[] - create SearchResults folder and file
+[x] - create SearchResults folder and file
 [] - create ConcertDetails folder and file
 [] - create ConcertReview folder and file
 [] - update App.js and index.js

@@ -14,7 +14,7 @@ function SearchItem({concert}) {
 
     return (
         <>
-            {concert.displayName}
+            <p>{concert.displayName}</p>
             <button onClick={viewConcertDetails}>View Details</button>
         </>
 
