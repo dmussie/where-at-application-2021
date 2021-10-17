@@ -47,7 +47,7 @@ router.get('/', (req, res) => {
 // with venue ids 
 router.get('/:id', (req, res) => {
     console.log('req.params is:', req.params);
-    axios.get(`https://api.songkick.com/api/3.0/venues/${req.params.id}.json?apikey=${process.env.SONGKICK_API_KEY}`)
+    axios.get(`https://api.songkick.com/api/3.0/venues/${req.params.id}/calendar.json?apikey=${process.env.SONGKICK_API_KEY}`)
     .then(response => {
         res.send(response.data)
     })

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -11,6 +12,10 @@ function ConcertSearchPage() {
 
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const venues = useSelector(store => store.venuesReducer);
+
+    //console.log(venues);
     
     const [venueSearch, setVenueSearch] = useState('');
     const [dateOneSearch, setDateOneSearch] = useState('');
@@ -51,11 +56,19 @@ function ConcertSearchPage() {
             const venueArray = response.data.resultsPage.results.venue;
             for(let i in venueArray) {
                 if(venueArray[i].city.displayName === 'Minneapolis') {
-                   //() => setResults({...results, i: response.data.resultsPage.results.venue.id});
                    venueId.push(venueArray[i].id);
                      
                 }
                 console.log('minneapolis venue id', venueId); 
+            }
+            console.log(venueId);
+            for (let i of venueId) {
+                axios.get(`/api/concerts/${i}`)
+                .then(response => {
+                    console.log('inside venueId loop', i, response);
+                }).catch(error => {
+                    console.log('error in venueId loop:', error);
+                })
             }
             
         }).catch(error => {
@@ -76,68 +89,35 @@ function ConcertSearchPage() {
     //     })
     // }
 
-    // const handleLocationSubmit = (event) => {
-    //     console.log(event);
-    //     console.log(locationSearch);
-    //     event.preventDefault();
-    //     axios.get(`/api/concerts/${locationSearch}`)
-    //     .then(response => {
-    //         console.log('response is:', response.data);
-    //         setResults(response.data);
-    //     }).catch(error => {
-    //         console.log('error in handleLocationSubmit', error);
-    //     })
-    // }
+    const defaultSearch = {venue: '', dateOne: '', dateTwo: ''}
+    //Initial state is an object, with venue [dropdown], dateOne, dateTwo
+    let [newSearch, setSearch] = useState(defaultSearch);
 
-    // const handleDateOneSubmit = (event) => {
-    //     console.log(event);
-    //     console.log(dateOneSearch);
-    //     event.preventDefault();
-    //     axios.get(`/api/concerts/${dateOneSearch}`)
-    //     .then(response => {
-    //         console.log('response is:', response.data);
-    //         setResults(response.data);
-    //     }).catch(error => {
-    //         console.log('error in handleDateOneSubmit', error);
-    //     })
-    // }
+    const handleNewVenue = (event) => {
+        console.log('event occurred');
+        setSearch({...newSearch, venue: event.target.value});
+    };
 
-    // const handleDateTwoSubmit = (event) => {
-    //     console.log(event);
-    //     console.log(dateTwoSearch);
-    //     event.preventDefault();
-    //     axios.get(`/api/concerts/${dateTwoSearch}`)
-    //     .then(response => {
-    //         console.log('response is:', response.data);
-    //         setResults(response.data);
-    //     }).catch(error => {
-    //         console.log('error in handleDateTwoSubmit', error);
-    //     })
-    // }
+    
+
+    
 
     return (
         <div>
             <h2>Find Your Next Show!</h2>
-            Venue:<input placeholder="Venue" type="text" value={venueSearch} 
-                onChange={(event) => setVenueSearch(event.target.value)}/>
-                <button onClick={findAVenue}>Find A Venue!</button>
             <form onSubmit={handleSubmit}>
-                Venue Dropdown: <select name="venues" id="venues" value={} onChange={}>
-                    </select>
+                Venue:<input placeholder="Venue" type="text" value={venueSearch} 
+                onChange={(event) => setVenueSearch(event.target.value)}/>
                 Date One:<input placeholder="YYYY-MM-DD" type="text" value={dateOneSearch} 
                 onChange={(event) => setDateOneSearch(event.target.value)}/>
                 Date Two:<input placeholder="YYYY-MM-DD" type="text" value={dateTwoSearch} 
                 onChange={(event) => setDateTwoSearch(event.target.value)}/>
-                {/* <input placeholder="Venue" type="text" value={venueSearch} 
-                onChange={(event) => setVenueSearch(event.target.value)}/>
-                <input placeholder="Location" type="text" value={locationSearch} 
-                onChange={(event) => setLocationSearch(event.target.value)}/>
-                
-                 */}
+                <button onClick={findAVenue}>Find A Venue!</button>
                 <input type="Submit" value="Submit New Search"/>
             </form>
             <ul>
-                {/* {results.map((venue) => (
+                {/* when mapping, ternary operator (results.length = 0 empty div) 
+                {results.map((venue) => (
                     <li key={venue.id}>{venue.id}{venue.displayName}{venue.city.displayName}</li>
                 ))} */}
             </ul>
