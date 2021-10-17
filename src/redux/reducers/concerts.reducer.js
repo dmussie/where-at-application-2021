@@ -1,6 +1,6 @@
 const concertsReducer = (state = [], action) => {
     switch (action.type) {
-        case 'SET_CONCERTS':
+        case 'FETCH_CONCERTS':
             return action.payload;
         case 'UNSET_CONCERTS':
             return [];

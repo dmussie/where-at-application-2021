@@ -11,26 +11,27 @@ function SearchResultsPage() {
     const history = useHistory();
 
     // this reducer will be mapped through in the return function
-    const concertsReducer = useSelector(store => store.concertsReducer);
-    console.log(concertsReducer);
-    const getConcerts = () => {
-        dispatch({type: 'FETCH_CONCERTS'});
-    }
+    const concerts = useSelector(store => store.concertsReducer);
+    console.log(concerts);
+    // const getConcerts = () => {
+    //     dispatch({type: 'FETCH_CONCERTS'});
+    // }
 
-    useEffect(() => {
-        console.log('Results page useEffect successful');
-        // dispatch an action to request concertsReducer data from API
-        getConcerts();
-    }, []);
+    // useEffect(() => {
+    //     console.log('Results page useEffect successful');
+    //     // dispatch an action to request concertsReducer data from API
+    //     getConcerts();
+    // }, []);
 
     return(
         <div>
             <h3>Here Are Some Shows You Might Like!</h3>
             <p>
-                {concertsReducer.map((concert) => {
-                    <SearchItem key={concert.id} concert={concert} />
+                {concerts.map((concert) => {
+                    return(<SearchItem key={concert.id} concert={concert} />)
                 })}
             </p>
+            
         </div>
 
     );

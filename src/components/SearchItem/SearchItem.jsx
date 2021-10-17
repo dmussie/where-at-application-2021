@@ -6,16 +6,17 @@ function SearchItem({concert}) {
     const history = useHistory();
 
     const viewConcertDetails = () => {
-        console.log(concert);
-        dispatch({type: 'FETCH_CONCERT_DETAILS', payload: concert})
+        console.log(concert.data.resultsPage.results.event);
+        const concertPayload = concert.data.resultsPage.results.event;
+        dispatch({type: 'FETCH_CONCERT_DETAILS', payload: concertPayload})
         history.push('/concertdetails');
     }
 
     return (
-        <p>
-            <span>{concert}</span>
+        <>
+            {concert.displayName}
             <button onClick={viewConcertDetails}>View Details</button>
-        </p>
+        </>
 
     );
 };

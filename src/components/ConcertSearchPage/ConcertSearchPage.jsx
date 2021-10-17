@@ -13,14 +13,14 @@ function ConcertSearchPage() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const venues = useSelector(store => store.venuesReducer);
+    
 
     //console.log(venues);
     
     const [venueSearch, setVenueSearch] = useState('');
     const [dateOneSearch, setDateOneSearch] = useState('');
     const [dateTwoSearch, setDateTwoSearch] = useState('');
-    const [results, setResults] = useState({});
+    const [results, setResults] = useState([]);
 
     const handleSubmit = (event) => {
         console.log(event);
@@ -37,7 +37,6 @@ function ConcertSearchPage() {
     }
 
     // for loop/switch statements for venue results
-
     const findAVenue = (event) => {
         let venueId = [];
         console.log(event);
@@ -49,8 +48,8 @@ function ConcertSearchPage() {
             console.log('response is:', response.data);
             console.log('inside response:', response.data.resultsPage.results.venue);
             
-            //dispatch({type: 'SET_CONCERTS', payload: results})
-            //history.push('/searchresults');
+            // dispatch({type: 'SET_CONCERTS', payload: results})
+            
             //for loop here, res.send results (switch statement for mulitple cities)
             //req.user.city!!!! for condition
             const venueArray = response.data.resultsPage.results.venue;
@@ -66,9 +65,14 @@ function ConcertSearchPage() {
                 axios.get(`/api/concerts/${i}`)
                 .then(response => {
                     console.log('inside venueId loop', i, response);
+                    console.log('event data', response.data.resultsPage.results.event);
+                    const eventPayload = response.data.resultsPage.results.event;
+                    dispatch({type: 'FETCH_CONCERTS', payload: eventPayload})
+                    history.push('/searchresults');
                 }).catch(error => {
                     console.log('error in venueId loop:', error);
                 })
+                
             }
             
         }).catch(error => {
@@ -113,15 +117,29 @@ function ConcertSearchPage() {
                 Date Two:<input placeholder="YYYY-MM-DD" type="text" value={dateTwoSearch} 
                 onChange={(event) => setDateTwoSearch(event.target.value)}/>
                 <button onClick={findAVenue}>Find A Venue!</button>
-                <input type="Submit" value="Submit New Search"/>
             </form>
-            <ul>
-                {/* when mapping, ternary operator (results.length = 0 empty div) 
-                {results.map((venue) => (
+            {/* <ul>
+                when mapping, ternary operator (results.length = 0 empty div) */}
+                {/* {results.map((venue) => (
                     <li key={venue.id}>{venue.id}{venue.displayName}{venue.city.displayName}</li>
-                ))} */}
-            </ul>
-            {JSON.stringify(results)}
+                ))}  */}
+                {/* {concerts.length === 0 ? <></>:
+                    <>
+                        {concerts.map((event) => {
+                            <p>{event.displayName}</p>
+                        })}
+                    </>
+                
+                }
+
+                
+                {concerts.map((event) => {
+                        <li key={event.id}>{event}</li>
+                    })}
+                
+
+            </ul> */}
+            {/* {JSON.stringify(concerts)} */}
         </div>
     
         //map through search results
