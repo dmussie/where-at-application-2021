@@ -1,35 +1,26 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 function ConcertSearchPage() {
     // start with venue and dates search
     // venue and dates search will navigate us to search results page
     // events will be presented in the following search results page
     // which will include name of artist, date and time of show at venue
+
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+    
+
+    //console.log(venues);
     
     const [venueSearch, setVenueSearch] = useState('');
     const [dateOneSearch, setDateOneSearch] = useState('');
     const [dateTwoSearch, setDateTwoSearch] = useState('');
     const [results, setResults] = useState([]);
-
-    // const dataToSend = {venueSearch: venueSearch, 
-    //     dateOneSearch: dateOneSearch, 
-    //     dateTwoSearch: dateTwoSearch};
-
-    // const handleSubmit = (event) => {
-    //     console.log('data to send is:', dataToSend);
-    //     event.preventDefault();
-    //     axios({ 
-    //         method: 'GET',
-    //         url: `https://api.songkick.com/api/3.0/venues/24426.json?apikey=oZibvMeWtrvsIODy`,
-    //         data: dataToSend,
-    //     }).then(response => {
-    //         console.log('response is:', response.data);
-    //         setResults(response.data);
-    //     }).catch(error => {
-    //         console.log('error in handleSubmit', error);
-    //     })
-    // }
 
     const handleSubmit = (event) => {
         console.log(event);
@@ -38,6 +29,7 @@ function ConcertSearchPage() {
         axios.get(`/api/concerts/${venueSearch}`)
         .then(response => {
             console.log('response is:', response.data);
+            console.log('search results are:', results);
             setResults(response.data);
         }).catch(error => {
             console.log('error in handleSubmit', error);
@@ -45,8 +37,8 @@ function ConcertSearchPage() {
     }
 
     // for loop/switch statements for venue results
-
     const findAVenue = (event) => {
+        let venueId = [];
         console.log(event);
         console.log(venueSearch);
         event.preventDefault();
@@ -54,12 +46,35 @@ function ConcertSearchPage() {
         
         .then(response => {
             console.log('response is:', response.data);
-            setResults(response.data);
+            console.log('inside response:', response.data.resultsPage.results.venue);
+            
+            // dispatch({type: 'SET_CONCERTS', payload: results})
+            
             //for loop here, res.send results (switch statement for mulitple cities)
             //req.user.city!!!! for condition
-            // if(response.data.city.displayName === 'Minneapolis') {
-            //   response.send({event: response.data})  
-            // }
+            const venueArray = response.data.resultsPage.results.venue;
+            for(let i in venueArray) {
+                if(venueArray[i].city.displayName === 'Minneapolis') {
+                   venueId.push(venueArray[i].id);
+                     
+                }
+                console.log('minneapolis venue id', venueId); 
+            }
+            console.log(venueId);
+            for (let i of venueId) {
+                axios.get(`/api/concerts/${i}`)
+                .then(response => {
+                    console.log('inside venueId loop', i, response);
+                    console.log('event data', response.data.resultsPage.results.event);
+                    const eventPayload = response.data.resultsPage.results.event;
+                    dispatch({type: 'FETCH_CONCERTS', payload: eventPayload})
+                    history.push('/searchresults');
+                }).catch(error => {
+                    console.log('error in venueId loop:', error);
+                })
+                
+            }
+            
         }).catch(error => {
             console.log('error in handleSubmit', error);
         })
@@ -78,66 +93,53 @@ function ConcertSearchPage() {
     //     })
     // }
 
-    // const handleLocationSubmit = (event) => {
-    //     console.log(event);
-    //     console.log(locationSearch);
-    //     event.preventDefault();
-    //     axios.get(`/api/concerts/${locationSearch}`)
-    //     .then(response => {
-    //         console.log('response is:', response.data);
-    //         setResults(response.data);
-    //     }).catch(error => {
-    //         console.log('error in handleLocationSubmit', error);
-    //     })
-    // }
+    const defaultSearch = {venue: '', dateOne: '', dateTwo: ''}
+    //Initial state is an object, with venue [dropdown], dateOne, dateTwo
+    let [newSearch, setSearch] = useState(defaultSearch);
 
-    // const handleDateOneSubmit = (event) => {
-    //     console.log(event);
-    //     console.log(dateOneSearch);
-    //     event.preventDefault();
-    //     axios.get(`/api/concerts/${dateOneSearch}`)
-    //     .then(response => {
-    //         console.log('response is:', response.data);
-    //         setResults(response.data);
-    //     }).catch(error => {
-    //         console.log('error in handleDateOneSubmit', error);
-    //     })
-    // }
+    const handleNewVenue = (event) => {
+        console.log('event occurred');
+        setSearch({...newSearch, venue: event.target.value});
+    };
 
-    // const handleDateTwoSubmit = (event) => {
-    //     console.log(event);
-    //     console.log(dateTwoSearch);
-    //     event.preventDefault();
-    //     axios.get(`/api/concerts/${dateTwoSearch}`)
-    //     .then(response => {
-    //         console.log('response is:', response.data);
-    //         setResults(response.data);
-    //     }).catch(error => {
-    //         console.log('error in handleDateTwoSubmit', error);
-    //     })
-    // }
+    
+
+    
 
     return (
         <div>
             <h2>Find Your Next Show!</h2>
-            Venue:<input placeholder="Venue" type="text" value={venueSearch} 
-                onChange={(event) => setVenueSearch(event.target.value)}/>
-                <button onClick={findAVenue}>Find A Venue!</button>
             <form onSubmit={handleSubmit}>
-                
+                Venue:<input placeholder="Venue" type="text" value={venueSearch} 
+                onChange={(event) => setVenueSearch(event.target.value)}/>
                 Date One:<input placeholder="YYYY-MM-DD" type="text" value={dateOneSearch} 
                 onChange={(event) => setDateOneSearch(event.target.value)}/>
                 Date Two:<input placeholder="YYYY-MM-DD" type="text" value={dateTwoSearch} 
                 onChange={(event) => setDateTwoSearch(event.target.value)}/>
-                {/* <input placeholder="Venue" type="text" value={venueSearch} 
-                onChange={(event) => setVenueSearch(event.target.value)}/>
-                <input placeholder="Location" type="text" value={locationSearch} 
-                onChange={(event) => setLocationSearch(event.target.value)}/>
-                
-                 */}
-                <input type="Submit" value="Submit New Search"/>
+                <button onClick={findAVenue}>Find A Venue!</button>
             </form>
-            {JSON.stringify(results)}
+            {/* <ul>
+                when mapping, ternary operator (results.length = 0 empty div) */}
+                {/* {results.map((venue) => (
+                    <li key={venue.id}>{venue.id}{venue.displayName}{venue.city.displayName}</li>
+                ))}  */}
+                {/* {concerts.length === 0 ? <></>:
+                    <>
+                        {concerts.map((event) => {
+                            <p>{event.displayName}</p>
+                        })}
+                    </>
+                
+                }
+
+                
+                {concerts.map((event) => {
+                        <li key={event.id}>{event}</li>
+                    })}
+                
+
+            </ul> */}
+            {/* {JSON.stringify(concerts)} */}
         </div>
     
         //map through search results

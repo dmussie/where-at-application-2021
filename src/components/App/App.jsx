@@ -4,6 +4,7 @@ import {
   Redirect,
   Route,
   Switch,
+  Link
 } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,6 +23,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
 import ConcertSearchPage from '../ConcertSearchPage/ConcertSearchPage';
+import SearchResultsPage from '../SearchResultsPage/SearchResultsPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +36,15 @@ function App() {
 
   return (
     <Router>
+      <p>
+        <Link to="/concertsearch">Search</Link>  
+      </p>
+      <p>
+        <Link to="/searchresults">Search Results</Link>  
+      </p>
+      <p>
+        <Link to="/concertdetails">Concert Details</Link>  
+      </p>   
       <div>
         <Nav />
         <Switch>
@@ -66,6 +77,13 @@ function App() {
             path="/concertsearch"
           >
             <ConcertSearchPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute 
+            exact 
+            path="/searchresults"
+          >
+            <SearchResultsPage />
           </ProtectedRoute>
 
           <ProtectedRoute
