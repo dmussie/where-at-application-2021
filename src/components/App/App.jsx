@@ -24,6 +24,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import './App.css';
 import ConcertSearchPage from '../ConcertSearchPage/ConcertSearchPage';
 import SearchResultsPage from '../SearchResultsPage/SearchResultsPage';
+import ConcertDetailsPage from '../ConcertDetailsPage/ConcertDetailsPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -84,6 +85,13 @@ function App() {
             path="/searchresults"
           >
             <SearchResultsPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute 
+            exact 
+            path="/concertdetails"
+          >
+            <ConcertDetailsPage />
           </ProtectedRoute>
 
           <ProtectedRoute
