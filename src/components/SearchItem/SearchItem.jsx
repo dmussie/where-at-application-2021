@@ -7,6 +7,8 @@ function SearchItem({concert}) {
 
     const viewConcertDetails = () => {
         console.log(concert);
+        // dispatch FETCH_CONCERT_DETAILS
+        // create ConcertDetails saga and reducer
         dispatch({type: 'FETCH_CONCERT_DETAILS', payload: concert})
         history.push('/concertdetails');
     }

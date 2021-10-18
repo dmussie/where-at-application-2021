@@ -118,28 +118,6 @@ function ConcertSearchPage() {
                 onChange={(event) => setDateTwoSearch(event.target.value)}/>
                 <button onClick={findAVenue}>Find A Venue!</button>
             </form>
-            {/* <ul>
-                when mapping, ternary operator (results.length = 0 empty div) */}
-                {/* {results.map((venue) => (
-                    <li key={venue.id}>{venue.id}{venue.displayName}{venue.city.displayName}</li>
-                ))}  */}
-                {/* {concerts.length === 0 ? <></>:
-                    <>
-                        {concerts.map((event) => {
-                            <p>{event.displayName}</p>
-                        })}
-                    </>
-                
-                }
-
-                
-                {concerts.map((event) => {
-                        <li key={event.id}>{event}</li>
-                    })}
-                
-
-            </ul> */}
-            {/* {JSON.stringify(concerts)} */}
         </div>
     
         //map through search results
