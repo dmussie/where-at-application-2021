@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import ConcertDetailsItem from '../ConcertDetailsItem/ConcertDetailsItem';
+
 
 function ConcertDetailsPage() {
     const dispatch = useDispatch();
