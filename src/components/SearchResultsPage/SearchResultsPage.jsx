@@ -26,11 +26,11 @@ function SearchResultsPage() {
     return(
         <div>
             <h3>Here Are Some Shows You Might Like!</h3>
-            <p>
+            <>
                 {concerts.map((concert) => {
                     return(<SearchItem key={concert.id} concert={concert} />)
                 })}
-            </p>
+            </>
             
         </div>
 

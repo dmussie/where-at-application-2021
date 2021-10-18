@@ -6,9 +6,8 @@ function SearchItem({concert}) {
     const history = useHistory();
 
     const viewConcertDetails = () => {
-        console.log(concert.data.resultsPage.results.event);
-        const concertPayload = concert.data.resultsPage.results.event;
-        dispatch({type: 'FETCH_CONCERT_DETAILS', payload: concertPayload})
+        console.log(concert);
+        dispatch({type: 'FETCH_CONCERT_DETAILS', payload: concert})
         history.push('/concertdetails');
     }
 
