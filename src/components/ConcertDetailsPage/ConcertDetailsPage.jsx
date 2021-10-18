@@ -7,22 +7,18 @@ function ConcertDetailsPage() {
     const history = useHistory();
 
     // this reducer will be mapped through in the return function
-    const concerts = useSelector(store => store.concertsReducer);
+    const concerts = useSelector(store => store.concertDetailsReducer);
     console.log(concerts);
 
     return(
         <>
             <h3>Here's Some More Info On The Show!</h3>
-            <>
-                {concerts.map((concert) => {
-                    return(<ConcertDetailsItem key={concert.id} concert={concert} />)
-                })}
-            </>
-            {/* <p>{concerts.displayName}</p> */}
-            {/* <p>{concerts.location.city}</p> */}
-            {/* <p>{concerts.start.date}</p>
+            <p>{concerts.displayName}</p>
+            <p>{concerts.location.city}</p>
+            <p>{concerts.start.date}</p>
             <p>{concerts.start.time}</p>
-            <p>{concerts.venue.metroArea.uri}</p> */}
+            <p>{concerts.uri}</p>
+            <button>Save Event!</button>
         </>
     )
 }

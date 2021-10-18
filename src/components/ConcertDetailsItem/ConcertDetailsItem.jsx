@@ -10,11 +10,7 @@ function ConcertDetailsItem({concert}) {
     return (
         <>
             <p>{concert.displayName}</p>
-            <p>{concert.location.city}</p>
-            <p>{concert.start.date}</p>
-            <p>{concert.start.time}</p>
-            <p>{concert.uri}</p>
-            <button>Save Event!</button>
+            
         </>
     )
 }
