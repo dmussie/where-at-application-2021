@@ -78,7 +78,7 @@ router.post('/', (req, res) => {
         INSERT INTO "user_events" ("user_id", "event_id")
         VALUES ($1, $2)`
 
-        pool.query(userEventsJunctionQuery, [eventId, req.body.event_id])
+        pool.query(userEventsJunctionQuery, [req.user.id, eventId])
         .then(result => {
             res.sendStatus(201);
         }).catch(error => {
