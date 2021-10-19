@@ -136,14 +136,15 @@ Customize this ReadMe and the code comments in this project to read less like a 
   [x] - link songkick api
   [x] - create router.get
   [] - create router.delete
-[] - save local Twin Cities venues to table
-  [] - columns: id, songkick_id, venue_name
-  [] - input data based on venue query searches and pulling songkick id's
+  [] - create router.put?
+[x] - save local Twin Cities venues to table
+  [x] - columns: id, songkick_id, venue_name
+  [x] - input data based on venue query searches and pulling songkick id's
 [] - create concerts.sagas.js
 [] - create concerts.reducer.js
 [x] - create SearchConcerts folder and file
 [x] - create SearchResults folder and file
-[] - create ConcertDetails folder and file
+[x] - create ConcertDetails folder and file
 [] - create ConcertReview folder and file
 [] - update App.js and index.js
 
@@ -158,7 +159,7 @@ Customize this ReadMe and the code comments in this project to read less like a 
 [] - update App.js and index.js
 
 # Stretch Miscelaneous Features
-[] - Event URL enable click action and navigation to event page (react native?)
+[x] - Event URL enable click action and navigation to event page
 [] - Link Spotify to Sign Up page
   [] - linked users can bypass search page and navigate to results based on Spotify interests
 [] - Display map of concerts search page
