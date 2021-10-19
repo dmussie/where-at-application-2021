@@ -58,13 +58,35 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    const displayName = req.body.displayName;
-    console.log('adding an event title:', displayName);
-    const queryText = `INSERT INTO "event_titles" (displayName)
-    VALUES ($1)`;
-    pool.query(queryText, displayName)
+    console.log('req.body:', req.body);
+    const insertEventQuery = `
+    INSERT INTO "events" (displayName, city, time, uri)
+    VALUES ($1, $2, $3, $4)`;
+    // first query makes concert
+    pool.query(insertEventQuery, 
+        req.body.displayName,
+        req.body.location.city,
+        req.body.start.time,
+        req.body.uri)
     .then((result) => {
-        res.sendStatus(200);
+        console.log('New event Id:', result.rows[0].id);
+        
+        const eventId = result.rows[0].id; 
+
+        // now handle user reference
+        const userEventsJunctionQuery = `
+        INSERT INTO "user_events" ("user_id", "event_id")
+        VALUES ($1, $2)`
+
+        pool.query(userEventsJunctionQuery, [eventId, req.body.event_id])
+        .then(result => {
+            res.sendStatus(201);
+        }).catch(error => {
+            console.log(error);
+            res.sendStatus(500);
+        })
+        
+    // catch for the first query    
     }).catch((error) => {
         console.log('Error in POST', error);
     })
