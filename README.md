@@ -158,6 +158,7 @@ Customize this ReadMe and the code comments in this project to read less like a 
 [] - update App.js and index.js
 
 # Stretch Miscelaneous Features
+[] - Event URL enable click action and navigation to event page (react native?)
 [] - Link Spotify to Sign Up page
   [] - linked users can bypass search page and navigate to results based on Spotify interests
 [] - Display map of concerts search page

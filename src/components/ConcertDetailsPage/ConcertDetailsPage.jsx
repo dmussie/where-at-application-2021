@@ -21,7 +21,7 @@ function ConcertDetailsPage() {
                 uri: concerts.uri
             }
         }).then((response) => {
-            console.log('Event post successful');
+            console.log('Event post successful', response);
             alert('Concert Saved!')
         }).catch((error) => {
             alert('Oh No! Could Not Save Event.');
@@ -34,9 +34,11 @@ function ConcertDetailsPage() {
             <h3>Here's Some More Info On The Show!</h3>
             Event: <p>{concerts.displayName}</p>
             City: <p>{concerts.location.city}</p>
-            Date: <p>{concerts.start.date}</p>
+            {/* Date: <p>{concerts.start.date}</p> */}
             Time: <p>{concerts.start.time}</p>
-            Event Page: <p>{concerts.uri}</p>
+            <p>
+                <a href={concerts.uri} target="_blank"> Event Page</a>
+            </p>
             <button onClick={postConcert}>Save Event!</button>
         </>
     )

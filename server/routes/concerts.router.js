@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+const pool = require('../modules/pool');
 const router = express.Router();
 
 //get artist data from songkick 
@@ -56,16 +57,17 @@ router.get('/:id', (req, res) => {
     }); 
 });
 
-//get event info data from songkick
-// router.get('/:event', (req, res) => {
-//     console.log('req.params are:', req.params.search);
-//     axios.get(`https://api.songkick.com/api/3.0/events/${req.params.event}.json?apikey=${process.env.SONGKICK_API_KEY}`)
-//     .then(response => {
-//         res.send(response.data)
-//     })
-//     .catch(error => {
-//         console.log(error);
-//     }); 
-// });
+router.post('/', (req, res) => {
+    const displayName = req.body.displayName;
+    console.log('adding an event title:', displayName);
+    const queryText = `INSERT INTO "event_titles" (displayName)
+    VALUES ($1)`;
+    pool.query(queryText, displayName)
+    .then((result) => {
+        res.sendStatus(200);
+    }).catch((error) => {
+        console.log('Error in POST', error);
+    })
+});
 
 module.exports = router;
