@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+const pool = require('../modules/pool');
 const router = express.Router();
 
 //get artist data from songkick 
@@ -56,16 +57,39 @@ router.get('/:id', (req, res) => {
     }); 
 });
 
-//get event info data from songkick
-// router.get('/:event', (req, res) => {
-//     console.log('req.params are:', req.params.search);
-//     axios.get(`https://api.songkick.com/api/3.0/events/${req.params.event}.json?apikey=${process.env.SONGKICK_API_KEY}`)
-//     .then(response => {
-//         res.send(response.data)
-//     })
-//     .catch(error => {
-//         console.log(error);
-//     }); 
-// });
+router.post('/', (req, res) => {
+    console.log('req.body:', req.body);
+    const insertEventQuery = `
+    INSERT INTO "events" ("displayName", "city", "time", "uri")
+    VALUES ($1, $2, $3, $4) RETURNING id;`;
+    // first query makes concert
+    pool.query(insertEventQuery, 
+        [req.body.displayName,
+        req.body.city,
+        req.body.time,
+        req.body.uri])
+    .then((result) => {
+        console.log('New event Id:', result.rows[0].id);
+        
+        const eventId = result.rows[0].id; 
+
+        // now handle user reference
+        const userEventsJunctionQuery = `
+        INSERT INTO "user_events" ("user_id", "event_id")
+        VALUES ($1, $2)`
+
+        pool.query(userEventsJunctionQuery, [req.user.id, eventId])
+        .then(result => {
+            res.sendStatus(201);
+        }).catch(error => {
+            console.log(error);
+            res.sendStatus(500);
+        })
+
+    // catch for the first query    
+    }).catch((error) => {
+        console.log('Error in POST', error);
+    })
+});
 
 module.exports = router;

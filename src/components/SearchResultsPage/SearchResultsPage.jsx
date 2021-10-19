@@ -20,7 +20,8 @@ function SearchResultsPage() {
     // useEffect(() => {
     //     console.log('Results page useEffect successful');
     //     // dispatch an action to request concertsReducer data from API
-    //     getConcerts();
+    //     const action = { type: 'SET_CONCERT_DETAILS', payload: concerts};
+    //     dispatch(action);
     // }, []);
 
     return(
