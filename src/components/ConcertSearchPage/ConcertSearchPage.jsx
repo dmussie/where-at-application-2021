@@ -48,7 +48,7 @@ function ConcertSearchPage() {
             console.log('response is:', response.data);
             console.log('inside response:', response.data.resultsPage.results.venue);
             
-            // dispatch({type: 'SET_CONCERTS', payload: results})
+            //dispatch({type: 'SET_CONCERTS', payload: results})
             
             //for loop here, res.send results (switch statement for mulitple cities)
             //req.user.city!!!! for condition

@@ -60,14 +60,14 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     console.log('req.body:', req.body);
     const insertEventQuery = `
-    INSERT INTO "events" (displayName, city, time, uri)
-    VALUES ($1, $2, $3, $4)`;
+    INSERT INTO "events" ("displayName", "city", "time", "uri")
+    VALUES ($1, $2, $3, $4) RETURNING id;`;
     // first query makes concert
     pool.query(insertEventQuery, 
-        req.body.displayName,
-        req.body.location.city,
-        req.body.start.time,
-        req.body.uri)
+        [req.body.displayName,
+        req.body.city,
+        req.body.time,
+        req.body.uri])
     .then((result) => {
         console.log('New event Id:', result.rows[0].id);
         
@@ -85,7 +85,7 @@ router.post('/', (req, res) => {
             console.log(error);
             res.sendStatus(500);
         })
-        
+
     // catch for the first query    
     }).catch((error) => {
         console.log('Error in POST', error);
