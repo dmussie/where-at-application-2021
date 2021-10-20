@@ -30,10 +30,12 @@ router.get('/venue/:venue', (req, res) => {
     }); 
 });
 
-// get venue id from the venues database to then utilized router.get('/:id')
+// get event id from the user_events database to then utilized router.get('/:id')
 router.get('/', (req, res) => {
     // Add query to get all genres
-    const query = 'SELECT "venue_id" FROM "venues" ORDER BY "name" ASC';
+    const query = `SELECT * FROM "user_events" 
+	JOIN "events" ON "events"."id" = "user_events"."event_id"
+	WHERE "user_id" = '$1';`;
     pool.query(query)
       .then( result => {
         res.send(result.rows);

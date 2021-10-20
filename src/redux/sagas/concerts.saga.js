@@ -2,7 +2,7 @@ import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 //concerts saga: will be fired on "FETCH_CONCERTS" actions
-function* fetchConcerts() {
+function* fetchSavedConcerts() {
     try{
         const config = {
             headers: {'Content-Type': 'application/json'},
@@ -19,7 +19,7 @@ function* fetchConcerts() {
 }
 
 function* concertsSaga() {
-    yield takeEvery('FETCH_CONCERTS', fetchConcerts);
+    yield takeEvery('FETCH_SAVED_CONCERTS', fetchSavedConcerts);
 }
 
 export default concertsSaga;
