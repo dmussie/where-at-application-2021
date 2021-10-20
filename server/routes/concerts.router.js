@@ -30,22 +30,6 @@ router.get('/venue/:venue', (req, res) => {
     }); 
 });
 
-// get event id from the user_events database to then utilized router.get('/:id')
-router.get('/', (req, res) => {
-    // Add query to get all genres
-    const query = `SELECT * FROM "user_events" 
-	JOIN "events" ON "events"."id" = "user_events"."event_id"
-	WHERE "user_id" = '$1';`;
-    pool.query(query)
-      .then( result => {
-        res.send(result.rows);
-      })
-      .catch(err => {
-        console.log('ERROR: Get all genres', err);
-        res.sendStatus(500);
-      })
-  });
-
 // get venue data from songkick
 // with venue ids 
 router.get('/:id', (req, res) => {
@@ -93,5 +77,21 @@ router.post('/', (req, res) => {
         console.log('Error in POST', error);
     })
 });
+
+// get event id from the user_events database to then utilized router.get('/:id')
+router.get('/', (req, res) => {
+    // Add query to get all genres
+    const query = `SELECT * FROM "user_events" 
+	JOIN "events" ON "events"."id" = "user_events"."event_id"
+	WHERE "user_id" = '$1';`;
+    pool.query(query)
+      .then( result => {
+        res.send(result.rows);
+      })
+      .catch(err => {
+        console.log('ERROR: Get all genres', err);
+        res.sendStatus(500);
+      })
+  });
 
 module.exports = router;

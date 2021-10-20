@@ -6,6 +6,10 @@ function ConcertReviewRage() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const userConcertList = useSelector(store => store.concertsReducer);
+    const userConcertList = useSelector(store => store.savedConcertsReducer);
     console.log('user concerts from database', userConcertList);
+
+    return (
+        //insert table here
+    )
 }

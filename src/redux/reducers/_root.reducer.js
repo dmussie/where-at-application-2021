@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
 import concertsReducer from './concerts.reducer';
-import venuesReducer from './venues.reducer';
+import venuesReducer from './savedConcerts.reducer';
 import concertDetailsReducer from './concertDetails.reducer';
 
 // rootReducer is the primary reducer for our entire project

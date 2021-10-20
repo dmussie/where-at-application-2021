@@ -12,14 +12,14 @@ function* fetchSavedConcerts() {
         const response = yield axios.get('/api/concerts', config);
         console.log(response.data);
 
-        yield put({ type: 'SET_CONCERTS', payload: response.data });
+        yield put({ type: 'SET_SAVED_CONCERTS', payload: response.data });
     } catch (error) {
         console.log('Concerts get request failed', error);
     }
 }
 
-function* concertsSaga() {
+function* savedConcertsSaga() {
     yield takeEvery('FETCH_SAVED_CONCERTS', fetchSavedConcerts);
 }
 
-export default concertsSaga;
+export default savedConcertsSaga;
