@@ -2,7 +2,7 @@ import { all } from 'redux-saga/effects';
 import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
-import concertsSaga from './savedConcerts.saga';
+import savedConcertsSaga from './savedConcerts.saga';
 import venuesSaga from './venues.saga';
 import concertDetailsSaga from './concertDetails.saga';
 

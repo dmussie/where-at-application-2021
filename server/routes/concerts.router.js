@@ -81,15 +81,16 @@ router.post('/', (req, res) => {
 // get event id from the user_events database to then utilized router.get('/:id')
 router.get('/', (req, res) => {
     // Add query to get all genres
+    console.log('in router.get');
     const query = `SELECT * FROM "user_events" 
 	JOIN "events" ON "events"."id" = "user_events"."event_id"
-	WHERE "user_id" = '$1';`;
-    pool.query(query)
+	WHERE "user_id" = $1;`;
+    pool.query(query, [req.user.id])
       .then( result => {
         res.send(result.rows);
       })
       .catch(err => {
-        console.log('ERROR: Get all genres', err);
+        console.log('ERROR: Get all concerts', err);
         res.sendStatus(500);
       })
   });
