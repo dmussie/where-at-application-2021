@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router';
+import ReviewItem from '../ReviewItem/ReviewItem';
 
 function ConcertReviewPage() {
     const dispatch = useDispatch();
@@ -36,12 +37,7 @@ function ConcertReviewPage() {
                     return(<ReviewItem key={userConcert.id} userConcert={userConcert}/>)
                 })}
             </tbody>
-            {/* <tr>
-                <td>{userConcertList.displayName}</td>
-                <td>{userConcertList.city}</td>
-                <td>{userConcertList.time}</td>
-                <td>{userConcertList.uri}</td>
-            </tr> */}
+            
             
             
         </table>
