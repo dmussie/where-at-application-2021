@@ -96,7 +96,7 @@ router.get('/', (req, res) => {
   });
 
   router.delete('/:id', (req, res) => {
-    const queryText = 'DELETE FROM "events" WHERE id=$1';
+    const queryText = 'DELETE FROM "user_events" WHERE "event_id"=$1';
     console.log('delete req.params.id', req.params.id);
     pool.query(queryText, [req.params.id])
       .then(() => { res.sendStatus(200); })
