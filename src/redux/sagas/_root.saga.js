@@ -3,7 +3,7 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import savedConcertsSaga from './savedConcerts.saga';
-import venuesSaga from './venues.saga';
+import deleteConcertSaga from './deleteConcert.saga';
 import concertDetailsSaga from './concertDetails.saga';
 
 // rootSaga is the primary saga.
@@ -20,6 +20,6 @@ export default function* rootSaga() {
     userSaga(),
     savedConcertsSaga(),
     //concertDetailsSaga,
-    venuesSaga()
+    deleteConcertSaga()
   ]);
 }

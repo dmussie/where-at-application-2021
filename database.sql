@@ -30,6 +30,7 @@ CREATE TABLE "user_events" (
 	"id" SERIAL PRIMARY KEY,
 	"user_id" INT REFERENCES "user",
 	"event_id" INT REFERENCES "events"
+	ON DELETE CASCADE
 );
 
 

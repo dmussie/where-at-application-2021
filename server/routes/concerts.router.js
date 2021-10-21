@@ -97,10 +97,11 @@ router.get('/', (req, res) => {
 
   router.delete('/:id', (req, res) => {
     const queryText = 'DELETE FROM "events" WHERE id=$1';
+    console.log('delete req.params.id', req.params.id);
     pool.query(queryText, [req.params.id])
       .then(() => { res.sendStatus(200); })
       .catch((err) => {
-        console.log('Error completing SELECT plant query', err);
+        console.log('Error completing DELETE concert query', err);
         res.sendStatus(500);
       });
   });
@@ -126,7 +127,7 @@ router.get('/', (req, res) => {
     pool.query(queryText, queryValues)
       .then(() => { res.sendStatus(200); })
       .catch((err) => {
-        console.log('Error completing SELECT plant query', err);
+        console.log('Error completing SELECT concert query', err);
         res.sendStatus(500);
       });
   });
