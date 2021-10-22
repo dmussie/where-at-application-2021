@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-
+import Button from '@material-ui/core/Button';
 
 function ConcertDetailsPage() {
     const dispatch = useDispatch();
@@ -28,7 +28,11 @@ function ConcertDetailsPage() {
         }).catch((error) => {
             alert('Oh No! Could Not Save Event.');
         })
-    }
+    };
+
+    const backToSearchResults = () => {
+        history.push('/searchresults')
+    };
 
     return(
         <>
@@ -39,7 +43,18 @@ function ConcertDetailsPage() {
             <p>
                 <a href={concerts.uri} target="_blank"> Event Page</a>
             </p>
-            <button onClick={postConcert}>Save Event!</button>
+            <Button 
+            variant="contained" 
+            color="primary" 
+            onClick={postConcert}>
+                Save Event!
+            </Button>
+            <Button 
+            variant="contained" 
+            color="secondary" 
+            onClick={backToSearchResults}>
+                Back
+            </Button>
         </>
     )
 }
