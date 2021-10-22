@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 function ReviewItem({userConcert}) {
     const dispatch = useDispatch();
@@ -9,9 +10,9 @@ function ReviewItem({userConcert}) {
         dispatch({type: 'DELETE_CONCERT', payload: userConcert});
     };
 
-    const editConcert = () => {
-        dispatch({type: 'EDIT_CONCERT', payload: userConcert});
-    };
+    // const editConcert = () => {
+    //     dispatch({type: 'EDIT_CONCERT', payload: userConcert});
+    // };
     return(
         <tr>
             <td>{userConcert.displayName}</td>
@@ -21,11 +22,16 @@ function ReviewItem({userConcert}) {
             <a href={userConcert.uri} target="_blank"> Get Tickets!</a>
             </td>
             <td>
-                <button onClick={removeConcert}>Delete Concert</button>
+                <Button 
+                variant="contained" 
+                color="secondary" 
+                onClick={removeConcert}>
+                    Delete
+                </Button>
             </td>
-            <td>
+            {/* <td>
                 <button onClick={editConcert}>Edit</button>
-            </td>
+            </td> */}
         </tr>
     )
 }
