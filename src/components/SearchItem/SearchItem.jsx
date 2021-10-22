@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 function SearchItem({concert}) {
     const dispatch = useDispatch();
@@ -16,7 +17,12 @@ function SearchItem({concert}) {
     return (
         <div>
             <p>{concert.displayName}</p>
-            <button onClick={viewConcertDetails}>View Details</button>
+            <Button 
+            variant="text"
+            color="primary"  
+            onClick={viewConcertDetails}>
+                View Details
+            </Button>
         </div>
     );
 };

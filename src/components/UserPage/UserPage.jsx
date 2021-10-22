@@ -1,5 +1,4 @@
 import React from 'react';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
@@ -15,9 +14,10 @@ function UserPage() {
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
-      <LogOutButton className="btn" />
+      {/* <LogOutButton className="btn" /> */}
       <Button 
       variant="contained"
+      color="secondary"
       onClick={navigateToSearch}>Find a Concert!</Button>
     </div>
   );

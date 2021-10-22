@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 function ConcertSearchPage() {
     // start with venue and dates search
@@ -13,10 +13,7 @@ function ConcertSearchPage() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    
-
-    //console.log(venues);
-    
+    // input useStates 
     const [venueSearch, setVenueSearch] = useState('');
     const [dateOneSearch, setDateOneSearch] = useState('');
     const [dateTwoSearch, setDateTwoSearch] = useState('');
@@ -48,11 +45,7 @@ function ConcertSearchPage() {
         .then(response => {
             console.log('response is:', response.data);
             console.log('inside response:', response.data.resultsPage.results.venue);
-            
-            //dispatch({type: 'SET_CONCERTS', payload: results})
-            
-            //for loop here, res.send results (switch statement for mulitple cities)
-            //req.user.city!!!! for condition
+
             const venueArray = response.data.resultsPage.results.venue;
             for(let i in venueArray) {
                 if(venueArray[i].city.displayName === 'Minneapolis') {
@@ -86,32 +79,6 @@ function ConcertSearchPage() {
         })
     }
 
-    // const handleVenueSubmit = (event) => {
-    //     console.log(event);
-    //     console.log(venueSearch);
-    //     event.preventDefault();
-    //     axios.get(`/api/concerts/${venueSearch}`)
-    //     .then(response => {
-    //         console.log('response is:', response.data);
-    //         setResults(response.data);
-    //     }).catch(error => {
-    //         console.log('error in handleVenueSubmit', error);
-    //     })
-    // }
-
-    const defaultSearch = {venue: '', dateOne: '', dateTwo: ''}
-    //Initial state is an object, with venue [dropdown], dateOne, dateTwo
-    let [newSearch, setSearch] = useState(defaultSearch);
-
-    const handleNewVenue = (event) => {
-        console.log('event occurred');
-        setSearch({...newSearch, venue: event.target.value});
-    };
-
-    
-
-    
-
     return (
         <div>
             <h2>Find Your Next Show!</h2>
@@ -122,7 +89,12 @@ function ConcertSearchPage() {
                 onChange={(event) => setDateOneSearch(event.target.value)}/>
                 Date Two:<input placeholder="YYYY-MM-DD" type="text" value={dateTwoSearch} 
                 onChange={(event) => setDateTwoSearch(event.target.value)}/>
-                <button onClick={findAVenue}>Find A Venue!</button>
+                <Button 
+                variant="contained" 
+                color="secondary" 
+                onClick={findAVenue}>
+                    Find A Venue!
+                </Button>
             </form>
         </div>
     
