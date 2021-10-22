@@ -22,6 +22,7 @@ function ConcertSearchPage() {
     const [dateTwoSearch, setDateTwoSearch] = useState('');
     const [results, setResults] = useState([]);
 
+    //TODO saga with the get? 
     const handleSubmit = (event) => {
         console.log(event);
         console.log(venueSearch);
@@ -60,15 +61,20 @@ function ConcertSearchPage() {
                 }
                 console.log('minneapolis venue id', venueId); 
             }
+            const numberOfVenues = venueId.length;
+            let numberOfVenueResults = 0;
             console.log(venueId);
             for (let i of venueId) {
                 axios.get(`/api/concerts/${i}`)
                 .then(response => {
+                    numberOfVenueResults += 1;
                     console.log('inside venueId loop', i, response);
                     console.log('event data', response.data.resultsPage.results.event);
                     const eventPayload = response.data.resultsPage.results.event;
                     dispatch({type: 'FETCH_CONCERTS', payload: eventPayload})
-                    history.push('/searchresults');
+                    if (numberOfVenues === numberOfVenueResults) {
+                        history.push('/searchresults');
+                    }
                 }).catch(error => {
                     console.log('error in venueId loop:', error);
                 })

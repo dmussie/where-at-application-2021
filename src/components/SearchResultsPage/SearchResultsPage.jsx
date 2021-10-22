@@ -27,12 +27,9 @@ function SearchResultsPage() {
     return(
         <div>
             <h3>Here Are Some Shows You Might Like!</h3>
-            <>
-                {concerts.map((concert) => {
+            {concerts.map((concert) => {
                     return(<SearchItem key={concert.id} concert={concert} />)
-                })}
-            </>
-            
+            })} 
         </div>
 
     );

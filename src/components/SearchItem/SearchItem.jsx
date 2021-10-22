@@ -14,11 +14,10 @@ function SearchItem({concert}) {
     }
 
     return (
-        <>
+        <div>
             <p>{concert.displayName}</p>
             <button onClick={viewConcertDetails}>View Details</button>
-        </>
-
+        </div>
     );
 };
 

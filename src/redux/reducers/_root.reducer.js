@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
 import concertsReducer from './concerts.reducer';
-import venuesReducer from './venues.reducer';
+import savedConcertsReducer from './savedConcerts.reducer';
 import concertDetailsReducer from './concertDetails.reducer';
 
 // rootReducer is the primary reducer for our entire project
@@ -14,7 +14,7 @@ import concertDetailsReducer from './concertDetails.reducer';
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
-  venuesReducer, // contains venue table information from database to aid in event searches
+  savedConcertsReducer, // contains venue table information from database to aid in event searches
   concertsReducer, // contains concert event information that a user wants to save
   concertDetailsReducer
 });

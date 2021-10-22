@@ -25,6 +25,7 @@ import './App.css';
 import ConcertSearchPage from '../ConcertSearchPage/ConcertSearchPage';
 import SearchResultsPage from '../SearchResultsPage/SearchResultsPage';
 import ConcertDetailsPage from '../ConcertDetailsPage/ConcertDetailsPage';
+import ConcertReviewPage from '../ConcertReviewPage/ConcertReviewPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -45,7 +46,10 @@ function App() {
       </p>
       <p>
         <Link to="/concertdetails">Concert Details</Link>  
-      </p>   
+      </p>
+      <p>
+        <Link to="/userconcerts">User Concerts</Link>  
+      </p>    
       <div>
         <Nav />
         <Switch>
@@ -92,6 +96,13 @@ function App() {
             path="/concertdetails"
           >
             <ConcertDetailsPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute 
+            exact 
+            path="/userconcerts"
+          >
+            <ConcertReviewPage />
           </ProtectedRoute>
 
           <ProtectedRoute

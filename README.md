@@ -135,7 +135,7 @@ Customize this ReadMe and the code comments in this project to read less like a 
 [x] - create concert.router.js
   [x] - link songkick api
   [x] - create router.get
-  [] - create router.delete
+  [x] - create router.delete
   [] - create router.put?
 [x] - save local Twin Cities venues to table
   [x] - columns: id, songkick_id, venue_name
@@ -145,8 +145,7 @@ Customize this ReadMe and the code comments in this project to read less like a 
 [x] - create SearchConcerts folder and file
 [x] - create SearchResults folder and file
 [x] - create ConcertDetails folder and file
-[] - create ConcertReview folder and file
-[] - update App.js and index.js
+[x] - create ConcertReview folder and file
 
 # Stretch Goal Favorite Artists
 [] - Create favoriteArtists.router.js
@@ -156,7 +155,6 @@ Customize this ReadMe and the code comments in this project to read less like a 
 [] - Create favorites.saga.js
 [] - Create favorites.reducer.js
 [] - Create FavoriteArtist folder and file
-[] - update App.js and index.js
 
 # Stretch Miscelaneous Features
 [x] - Event URL enable click action and navigation to event page

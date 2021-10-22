@@ -12,6 +12,7 @@ function ConcertDetailsPage() {
     console.log(concerts);
 
     const postConcert = () => {
+        // saga incorporated here to solve refresh issue on userconcerts
         axios({
             method: 'POST',
             url: '/api/concerts',
@@ -23,11 +24,10 @@ function ConcertDetailsPage() {
             }
         }).then((response) => {
             console.log('Event post successful', response);
-            alert('Concert Saved!')
+            history.push('/userconcerts');
         }).catch((error) => {
             alert('Oh No! Could Not Save Event.');
         })
-        history.push('/userconcerts');
     }
 
     return(
@@ -35,7 +35,6 @@ function ConcertDetailsPage() {
             <h3>Here's Some More Info On The Show!</h3>
             Event: <p>{concerts.displayName}</p>
             City: <p>{concerts.location.city}</p>
-            {/* Date: <p>{concerts.start.date}</p> */}
             Time: <p>{concerts.start.time}</p>
             <p>
                 <a href={concerts.uri} target="_blank"> Event Page</a>

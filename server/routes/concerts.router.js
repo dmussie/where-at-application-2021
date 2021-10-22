@@ -2,6 +2,9 @@ const express = require('express');
 const axios = require('axios');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+    rejectUnauthenticated,
+  } = require('../modules/authentication-middleware');
 
 //get artist data from songkick 
 // router.get('/:artist', (req, res) => {
@@ -19,10 +22,11 @@ const router = express.Router();
 //FAKE DATA to write saga and reducer stuff
 //
 
-router.get('/venue/:venue', (req, res) => {
+router.get('/venue/:venue', rejectUnauthenticated, (req, res) => {
     console.log('req.params is:', req.params);
     axios.get(`https://api.songkick.com/api/3.0/search/venues.json?query=${req.params.venue}&apikey=${process.env.SONGKICK_API_KEY}`)
     .then(response => {
+        // Promise.all (Chris suggestion)
         res.send(response.data)
     })
     .catch(error => {
@@ -30,23 +34,9 @@ router.get('/venue/:venue', (req, res) => {
     }); 
 });
 
-// get venue id from the venues database to then utilized router.get('/:id')
-router.get('/', (req, res) => {
-    // Add query to get all genres
-    const query = 'SELECT "venue_id" FROM "venues" ORDER BY "name" ASC';
-    pool.query(query)
-      .then( result => {
-        res.send(result.rows);
-      })
-      .catch(err => {
-        console.log('ERROR: Get all genres', err);
-        res.sendStatus(500);
-      })
-  });
-
 // get venue data from songkick
 // with venue ids 
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
     console.log('req.params is:', req.params);
     axios.get(`https://api.songkick.com/api/3.0/venues/${req.params.id}/calendar.json?apikey=${process.env.SONGKICK_API_KEY}`)
     .then(response => {
@@ -57,7 +47,8 @@ router.get('/:id', (req, res) => {
     }); 
 });
 
-router.post('/', (req, res) => {
+// TODO: Switch to Async await after presentation
+router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('req.body:', req.body);
     const insertEventQuery = `
     INSERT INTO "events" ("displayName", "city", "time", "uri")
@@ -77,7 +68,9 @@ router.post('/', (req, res) => {
         const userEventsJunctionQuery = `
         INSERT INTO "user_events" ("user_id", "event_id")
         VALUES ($1, $2)`
-
+        // look up asychronous express request (pizza parlour assignment)
+        // more recommended approach
+        // potential lecture topic!!!
         pool.query(userEventsJunctionQuery, [req.user.id, eventId])
         .then(result => {
             res.sendStatus(201);
@@ -91,5 +84,59 @@ router.post('/', (req, res) => {
         console.log('Error in POST', error);
     })
 });
+
+// get event id from the user_events database to then utilized router.get('/:id')
+router.get('/', rejectUnauthenticated, (req, res) => {
+    // Add query to get all genres
+    console.log('in router.get');
+    const query = `SELECT * FROM "user_events" 
+	JOIN "events" ON "events"."id" = "user_events"."event_id"
+	WHERE "user_id" = $1;`;
+    pool.query(query, [req.user.id])
+      .then( result => {
+        res.send(result.rows);
+      })
+      .catch(err => {
+        console.log('ERROR: Get all concerts', err);
+        res.sendStatus(500);
+      })
+  });
+
+  router.delete('/:id', rejectUnauthenticated, (req, res) => {
+    const queryText = 'DELETE FROM "user_events" WHERE "event_id"=$1';
+    console.log('delete req.params.id', req.params.id);
+    pool.query(queryText, [req.params.id])
+      .then(() => { res.sendStatus(200); })
+      .catch((err) => {
+        console.log('Error completing DELETE concert query', err);
+        res.sendStatus(500);
+      });
+  });
+
+  router.put('/', (req, res) => {
+    const updatedConcert = req.body;
+  
+    const queryText = `UPDATE "events"
+    SET "displayName" = $1, 
+    "city" = $2, 
+    "time" = $3, 
+    "uri" = $4 
+    WHERE "id"=$5;`;
+  
+    const queryValues = [
+      updatedConcert.displayName,
+      updatedConcert.city,
+      updatedConcert.time,
+      updatedConcert.uri,
+      updatedConcert.id,
+    ];
+  
+    pool.query(queryText, queryValues)
+      .then(() => { res.sendStatus(200); })
+      .catch((err) => {
+        console.log('Error completing SELECT concert query', err);
+        res.sendStatus(500);
+      });
+  });
 
 module.exports = router;

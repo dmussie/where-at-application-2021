@@ -2,9 +2,10 @@ import { all } from 'redux-saga/effects';
 import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
-import concertsSaga from './concerts.saga';
-import venuesSaga from './venues.saga';
+import savedConcertsSaga from './savedConcerts.saga';
+import deleteConcertSaga from './deleteConcert.saga';
 import concertDetailsSaga from './concertDetails.saga';
+import editConcertSaga from './editConcert.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -18,8 +19,9 @@ export default function* rootSaga() {
     loginSaga(), // login saga is now registered
     registrationSaga(),
     userSaga(),
-    //concertsSaga(),
+    savedConcertsSaga(),
     //concertDetailsSaga,
-    venuesSaga()
+    deleteConcertSaga(),
+    editConcertSaga()
   ]);
 }
