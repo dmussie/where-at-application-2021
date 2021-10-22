@@ -17,12 +17,11 @@ function ConcertReviewPage() {
         console.log('getConcerts activated');
         getConcerts();
     }, []);
-// stringify in the return and just vibe
+
     return (
         //insert table here
         <>
         <h3>Here Are Your Upcoming Shows!</h3>
-        <p>{JSON.stringify(userConcertList)}</p>
         <table>
             
             <tr>

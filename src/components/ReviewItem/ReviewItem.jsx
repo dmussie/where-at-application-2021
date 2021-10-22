@@ -7,7 +7,11 @@ function ReviewItem({userConcert}) {
 
     const removeConcert = () => {
         dispatch({type: 'DELETE_CONCERT', payload: userConcert});
-    }
+    };
+
+    const editConcert = () => {
+        dispatch({type: 'EDIT_CONCERT', payload: userConcert});
+    };
     return(
         <tr>
             <td>{userConcert.displayName}</td>
@@ -18,6 +22,9 @@ function ReviewItem({userConcert}) {
             </td>
             <td>
                 <button onClick={removeConcert}>Delete Concert</button>
+            </td>
+            <td>
+                <button onClick={editConcert}>Edit</button>
             </td>
         </tr>
     )

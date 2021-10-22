@@ -2,6 +2,9 @@ const express = require('express');
 const axios = require('axios');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+    rejectUnauthenticated,
+  } = require('../modules/authentication-middleware');
 
 //get artist data from songkick 
 // router.get('/:artist', (req, res) => {
@@ -19,10 +22,11 @@ const router = express.Router();
 //FAKE DATA to write saga and reducer stuff
 //
 
-router.get('/venue/:venue', (req, res) => {
+router.get('/venue/:venue', rejectUnauthenticated, (req, res) => {
     console.log('req.params is:', req.params);
     axios.get(`https://api.songkick.com/api/3.0/search/venues.json?query=${req.params.venue}&apikey=${process.env.SONGKICK_API_KEY}`)
     .then(response => {
+        // Promise.all (Chris suggestion)
         res.send(response.data)
     })
     .catch(error => {
@@ -32,7 +36,7 @@ router.get('/venue/:venue', (req, res) => {
 
 // get venue data from songkick
 // with venue ids 
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
     console.log('req.params is:', req.params);
     axios.get(`https://api.songkick.com/api/3.0/venues/${req.params.id}/calendar.json?apikey=${process.env.SONGKICK_API_KEY}`)
     .then(response => {
@@ -43,7 +47,8 @@ router.get('/:id', (req, res) => {
     }); 
 });
 
-router.post('/', (req, res) => {
+// TODO: Switch to Async await after presentation
+router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('req.body:', req.body);
     const insertEventQuery = `
     INSERT INTO "events" ("displayName", "city", "time", "uri")
@@ -63,7 +68,9 @@ router.post('/', (req, res) => {
         const userEventsJunctionQuery = `
         INSERT INTO "user_events" ("user_id", "event_id")
         VALUES ($1, $2)`
-
+        // look up asychronous express request (pizza parlour assignment)
+        // more recommended approach
+        // potential lecture topic!!!
         pool.query(userEventsJunctionQuery, [req.user.id, eventId])
         .then(result => {
             res.sendStatus(201);
@@ -79,7 +86,7 @@ router.post('/', (req, res) => {
 });
 
 // get event id from the user_events database to then utilized router.get('/:id')
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     // Add query to get all genres
     console.log('in router.get');
     const query = `SELECT * FROM "user_events" 
@@ -95,7 +102,7 @@ router.get('/', (req, res) => {
       })
   });
 
-  router.delete('/:id', (req, res) => {
+  router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const queryText = 'DELETE FROM "user_events" WHERE "event_id"=$1';
     console.log('delete req.params.id', req.params.id);
     pool.query(queryText, [req.params.id])

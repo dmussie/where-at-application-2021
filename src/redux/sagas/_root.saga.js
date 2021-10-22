@@ -5,6 +5,7 @@ import userSaga from './user.saga';
 import savedConcertsSaga from './savedConcerts.saga';
 import deleteConcertSaga from './deleteConcert.saga';
 import concertDetailsSaga from './concertDetails.saga';
+import editConcertSaga from './editConcert.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -20,6 +21,7 @@ export default function* rootSaga() {
     userSaga(),
     savedConcertsSaga(),
     //concertDetailsSaga,
-    deleteConcertSaga()
+    deleteConcertSaga(),
+    editConcertSaga()
   ]);
 }
