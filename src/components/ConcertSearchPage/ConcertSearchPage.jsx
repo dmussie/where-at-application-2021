@@ -14,7 +14,7 @@ function ConcertSearchPage() {
     const history = useHistory();
 
     // input useStates 
-    const [venueSearch, setVenueSearch] = useState('');
+    const [showSearch, setShowSearch] = useState('');
     const [dateOneSearch, setDateOneSearch] = useState('');
     const [dateTwoSearch, setDateTwoSearch] = useState('');
     const [results, setResults] = useState([]);
@@ -22,9 +22,9 @@ function ConcertSearchPage() {
     //TODO saga with the get? 
     const handleSubmit = (event) => {
         console.log(event);
-        console.log(venueSearch);
+        console.log(showSearch);
         event.preventDefault();
-        axios.get(`/api/concerts/${venueSearch}`)
+        axios.get(`/api/concerts/${showSearch}`)
         .then(response => {
             console.log('response is:', response.data);
             console.log('search results are:', results);
@@ -35,12 +35,12 @@ function ConcertSearchPage() {
     }
 
     // for loop/switch statements for venue results
-    const findAVenue = (event) => {
+    const findAShow = (event) => {
         let venueId = [];
         console.log(event);
-        console.log(venueSearch);
+        console.log(showSearch);
         event.preventDefault();
-        axios.get(`/api/concerts/venue/${venueSearch}`)
+        axios.get(`/api/concerts/venue/${showSearch}`)
         
         .then(response => {
             console.log('response is:', response.data);
@@ -83,8 +83,8 @@ function ConcertSearchPage() {
         <div>
             <h2>Find Your Next Show!</h2>
             <form onSubmit={handleSubmit}>
-                Venue:<input placeholder="Venue" type="text" value={venueSearch} 
-                onChange={(event) => setVenueSearch(event.target.value)}/>
+                Venue:<input placeholder="Venue" type="text" value={showSearch} 
+                onChange={(event) => setShowSearch(event.target.value)}/>
                 Date One:<input placeholder="YYYY-MM-DD" type="text" value={dateOneSearch} 
                 onChange={(event) => setDateOneSearch(event.target.value)}/>
                 Date Two:<input placeholder="YYYY-MM-DD" type="text" value={dateTwoSearch} 
@@ -92,8 +92,8 @@ function ConcertSearchPage() {
                 <Button 
                 variant="contained" 
                 color="secondary" 
-                onClick={findAVenue}>
-                    Find A Venue!
+                onClick={findAShow}>
+                    Find A Show!
                 </Button>
             </form>
         </div>

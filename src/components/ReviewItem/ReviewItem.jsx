@@ -1,10 +1,8 @@
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 
 function ReviewItem({userConcert}) {
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const removeConcert = () => {
         dispatch({type: 'DELETE_CONCERT', payload: userConcert});
@@ -13,6 +11,8 @@ function ReviewItem({userConcert}) {
     // const editConcert = () => {
     //     dispatch({type: 'EDIT_CONCERT', payload: userConcert});
     // };
+    //MUI Table down below??
+    //chart.js?
     return(
         <tr>
             <td>{userConcert.displayName}</td>
