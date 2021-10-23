@@ -81,6 +81,7 @@ function ConcertSearchPage() {
     }
 
     return (
+        // from free code camp
         <div class="search">
             <h2>Find Your Next Show!</h2>
             <form onSubmit={handleSubmit}>
@@ -98,8 +99,6 @@ function ConcertSearchPage() {
                 </Button>
             </form>
         </div>
-    
-        //map through search results
     );
 
 };

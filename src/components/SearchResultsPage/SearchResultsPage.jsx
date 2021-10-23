@@ -13,16 +13,6 @@ function SearchResultsPage() {
     // this reducer will be mapped through in the return function
     const concerts = useSelector(store => store.concertsReducer);
     console.log(concerts);
-    // const getConcerts = () => {
-    //     dispatch({type: 'FETCH_CONCERTS'});
-    // }
-
-    // useEffect(() => {
-    //     console.log('Results page useEffect successful');
-    //     // dispatch an action to request concertsReducer data from API
-    //     const action = { type: 'SET_CONCERT_DETAILS', payload: concerts};
-    //     dispatch(action);
-    // }, []);
 
     return(
         <div>
