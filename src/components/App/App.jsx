@@ -3,8 +3,7 @@ import {
   HashRouter as Router,
   Redirect,
   Route,
-  Switch,
-  Link
+  Switch
 } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -38,18 +37,6 @@ function App() {
 
   return (
     <Router>
-      <p>
-        <Link to="/concertsearch">Search</Link>  
-      </p>
-      <p>
-        <Link to="/searchresults">Search Results</Link>  
-      </p>
-      <p>
-        <Link to="/concertdetails">Concert Details</Link>  
-      </p>
-      <p>
-        <Link to="/userconcerts">User Concerts</Link>  
-      </p>    
       <div>
         <Nav />
         <Switch>

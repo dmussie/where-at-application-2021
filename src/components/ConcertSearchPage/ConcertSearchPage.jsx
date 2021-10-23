@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import './ConcertSearchPage.css';
 
 function ConcertSearchPage() {
     // start with venue and dates search
@@ -80,7 +81,7 @@ function ConcertSearchPage() {
     }
 
     return (
-        <div>
+        <div class="search">
             <h2>Find Your Next Show!</h2>
             <form onSubmit={handleSubmit}>
                 Venue:<input placeholder="Venue" type="text" value={showSearch} 
