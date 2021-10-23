@@ -92,7 +92,7 @@ function ConcertSearchPage() {
                 onChange={(event) => setDateTwoSearch(event.target.value)}/>
                 <Button 
                 variant="contained" 
-                color="secondary" 
+                color="primary" 
                 onClick={findAShow}>
                     Find A Show!
                 </Button>
