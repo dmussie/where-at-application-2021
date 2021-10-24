@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import SearchItem from '../SearchItem/SearchItem';
+import './SearchResultsPage.css';
 
 //concert search data will be sent here to be rendered on the DOM
 //this will be presented as a "results list" for a user to select
@@ -15,8 +16,9 @@ function SearchResultsPage() {
     console.log(concerts);
 
     return(
-        <div>
+        <div class="results">
             <h3>Here Are Some Shows You Might Like!</h3>
+            <img src="/images/powered-by-songkick-pink.png" alt="Songkick logo" />
             {concerts.map((concert) => {
                     return(<SearchItem key={concert.id} concert={concert} />)
             })} 

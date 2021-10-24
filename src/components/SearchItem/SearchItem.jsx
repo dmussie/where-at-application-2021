@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import './SearchItem.css';
 
 function SearchItem({concert}) {
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ function SearchItem({concert}) {
     }
 
     return (
-        <div>
+        <div class="results-item">
             <p>{concert.displayName}</p>
             <Button 
             variant="text"
