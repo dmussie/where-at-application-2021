@@ -36,9 +36,9 @@ router.get('/venue/:venue', rejectUnauthenticated, (req, res) => {
 
 // get venue data from songkick
 // with venue ids 
-router.get('/:id', rejectUnauthenticated, (req, res) => {
+router.get('/:id/:min_date/:max_date', rejectUnauthenticated, (req, res) => {
     console.log('req.params is:', req.params);
-    axios.get(`https://api.songkick.com/api/3.0/venues/${req.params.id}/calendar.json?apikey=${process.env.SONGKICK_API_KEY}`)
+    axios.get(`https://api.songkick.com/api/3.0/venues/${req.params.id}/calendar.json?min_date=${req.params.min_date}&max_date=${req.params.max_date}&apikey=${process.env.SONGKICK_API_KEY}`)
     .then(response => {
         res.send(response.data)
     })

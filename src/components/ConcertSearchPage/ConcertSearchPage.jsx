@@ -59,7 +59,7 @@ function ConcertSearchPage() {
             let numberOfVenueResults = 0;
             console.log(venueId);
             for (let i of venueId) {
-                axios.get(`/api/concerts/${i}`)
+                axios.get(`/api/concerts/${i}/${dateOneSearch}/${dateTwoSearch}`)
                 .then(response => {
                     numberOfVenueResults += 1;
                     console.log('inside venueId loop', i, response);
