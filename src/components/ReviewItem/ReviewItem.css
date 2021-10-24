@@ -1,13 +1,7 @@
 /* From W3 Schools */
-a:link {
-    color: yellow;
-    background-color: transparent;
+a, #tickets-link {
+    color: rgb(255, 0, 111);
     text-decoration: none;
-  }
+}
 
-  a:visited {
-    color: pink;
-    background-color: transparent;
-    text-decoration: none;
-  }
   

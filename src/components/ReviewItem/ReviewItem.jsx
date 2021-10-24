@@ -20,7 +20,7 @@ function ReviewItem({userConcert}) {
             <td>{userConcert.city}</td>
             <td>{userConcert.time}</td>
             <td>
-            <a href={userConcert.uri} target="_blank"> Get Tickets!</a>
+            <a id="tickets-link" href={userConcert.uri} target="_blank"> Get Tickets!</a>
             </td>
             <td>
                 <Button 
