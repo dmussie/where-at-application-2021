@@ -52,6 +52,16 @@ router.get('/:id/:min_date/:max_date', rejectUnauthenticated, (req, res) => {
     }); 
 });
 
+/**
+ * @api {post} /event Add a event
+ * @apiName AddEvent
+ * @apiGroup Event
+ *
+ *
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ */
+
 // TODO: Switch to Async await after presentation
 router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('req.body:', req.body);
