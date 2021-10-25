@@ -18,9 +18,14 @@ const {
 //     }); 
 // });
 
-//perform an additional router.get to FIND a venue id
-//FAKE DATA to write saga and reducer stuff
-//
+/**
+ * @api {get} /venue/:venue Request Venue query information
+ * @apiName GetVenues
+ * @apiGroup Venue
+ *
+ *
+ * @apiSuccess {Array} venues An array of venue Id's that fall under a venue's name.
+ */
 
 router.get('/venue/:venue', rejectUnauthenticated, (req, res) => {
     console.log('req.params is:', req.params);
