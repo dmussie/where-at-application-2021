@@ -62,13 +62,13 @@ Button
 
 /* This line makes the "Register" and "Login" buttons look like links */
 .btn_asLink {
-  padding: 0;
+  margin-bottom: 8px;
   border-width: 0;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid rgb(17, 249, 5);
   border-radius: 0;
   background: none;
   font: inherit;
-  color: #444;
+  color: rgb(10, 246, 65);
 }
 
 .btn_asLink:hover {
