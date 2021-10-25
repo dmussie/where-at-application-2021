@@ -16,7 +16,7 @@ function SearchResultsPage() {
     console.log(concerts);
 
     return(
-        <div class="results">
+        <div className="results">
             <h3>Here Are Some Shows You Might Like!</h3>
             <img src="/images/powered-by-songkick-pink.png" alt="Songkick logo" />
             {concerts.map((concert) => {

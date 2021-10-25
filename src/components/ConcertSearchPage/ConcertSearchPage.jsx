@@ -87,9 +87,9 @@ function ConcertSearchPage() {
             <form onSubmit={handleSubmit}>
                 Venue:<input placeholder="Venue" type="text" value={showSearch} 
                 onChange={(event) => setShowSearch(event.target.value)}/>
-                Date One:<input placeholder="YYYY-MM-DD" type="text" value={dateOneSearch} 
+                Min Date:<input placeholder="YYYY-MM-DD" type="text" value={dateOneSearch} 
                 onChange={(event) => setDateOneSearch(event.target.value)}/>
-                Date Two:<input placeholder="YYYY-MM-DD" type="text" value={dateTwoSearch} 
+                Max Date:<input placeholder="YYYY-MM-DD" type="text" value={dateTwoSearch} 
                 onChange={(event) => setDateTwoSearch(event.target.value)}/>
                 <Button 
                 variant="contained" 
