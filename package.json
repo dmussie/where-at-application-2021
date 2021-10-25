@@ -32,6 +32,11 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
+  "apidoc": {
+    "title": "Where At? Solo Project Documentation",
+    "version": "1.0",
+    "description": "API Documentation for the prime solo project"
+  },
   "devDependencies": {
     "nodemon": "^2.0.4"
   },
