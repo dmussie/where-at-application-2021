@@ -115,14 +115,10 @@ If you have any suggestions or issues, please email me at dannymussie7@gmail.com
 [x] - create ConcertDetails folder and file
 [x] - create ConcertReview folder and file
 
-# Stretch Goal Favorite Artists
-[] - Create favoriteArtists.router.js
-  [] - create router.post
-  [] - create router.get
-  [] - create router.delete
-[] - Create favorites.saga.js
-[] - Create favorites.reducer.js
-[] - Create FavoriteArtist folder and file
+# API Documentation/Testing
+[] - Add API documentation to API requests on the concert.router
+[] - Select a reducer (other than user) and run a unit test
+[] - STRETCH: look into integration testing for API concert data
 
 # Stretch Miscelaneous Features
 [x] - Event URL enable click action and navigation to event page
