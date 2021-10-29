@@ -18,7 +18,7 @@ CREATE TABLE "user" (
 
 CREATE TABLE "events" (
     "id" SERIAL PRIMARY KEY,
-    "displayName" VARCHAR (100) NOT NULL,
+    "displayName" VARCHAR (250) NOT NULL,
     "city" VARCHAR (100) NOT NULL,
     "time" TIME,
     "uri" VARCHAR (250) NOT NULL
