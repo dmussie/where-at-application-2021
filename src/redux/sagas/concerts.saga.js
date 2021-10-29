@@ -19,6 +19,22 @@ function* fetchConcertDetails(action) {
     }
 }
 
+function* fetchSavedConcerts() {
+    try{
+        const config = {
+            headers: {'Content-Type': 'application/json'},
+            withCredentials: true,
+        };
+
+        const response = yield axios.get('/api/concerts', config);
+        console.log(response.data);
+
+        yield put({ type: 'SET_SAVED_CONCERTS', payload: response.data });
+    } catch (error) {
+        console.log('Concerts get request failed', error);
+    }
+}
+
 function* deleteConcert(action) {
     try{
         const config = {
@@ -39,6 +55,7 @@ function* deleteConcert(action) {
 
 function* concertsSaga() {
     yield takeEvery('FETCH_CONCERT_DETAILS', fetchConcertDetails);
+    yield takeEvery('FETCH_SAVED_CONCERTS', fetchSavedConcerts);
     yield takeEvery('DELETE_CONCERT', deleteConcert);
 }
 
