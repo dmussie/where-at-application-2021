@@ -5,6 +5,8 @@ I find the process of locating and keeping track of interesting concerts nearby 
 
 "Where At?" is a concert finder application that aims to fullfill this need. Users are able to perform searches of iconic Minneapolis concert venues within specified date ranges. Upon a search, a user is navigated to a search results page which provides a list of events which is provided by the Songkick API. If any shows on this results page sparks interest, a user can click to see more concert details and can navigate to a details page for that specific show. If this selected show is appealling enough, the user can save this show to a database for long-term storage and can navigate to a final review page, which displays a table of all their saved shows. Here, the user can make any finalized decisions, either buy tickets to a show or delete a show that they no longer need to keep track of.
 
+To see the fully functional site, please visit: (heroku link here)
+
 ### Screen Shot
 - [Login Page](public/images/LoginPage.jpg)
 - [Register Page](public/images/RegisterPage.jpg)

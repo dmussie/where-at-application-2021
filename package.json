@@ -30,6 +30,7 @@
     "server": "nodemon --watch server server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "jest": "NODE_EVN=test jest test/*.*.test.js --coverage --forceExit --detectOpenHandles",
     "eject": "react-scripts eject"
   },
   "apidoc": {
