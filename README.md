@@ -66,7 +66,13 @@ CREATE TABLE "user" (
 - On the user events page, review the list of saved events and make any final decisions on which shows to attend
 - Any events that are no longer of interest can be removed with the "delete" button
 - Click "get tickets" link to navigate to an event page to see more information on the concert and purchase tickets
-- Select the "Home" tab to navigate back to the search page and find another show 
+- Select the "Home" tab to navigate back to the search page and find another show
+
+## Acknowledgement
+Thanks to Prime Digital Academy for providing the tools and guidance to make this idea a reality. My instructor and the Proth Cohort were immensely supportive at every step of this process.
+
+## Support
+If you have any suggestions or issues, please email me at dannymussie7@gmail.com
 
 ## Deployment
 
@@ -78,9 +84,7 @@ CREATE TABLE "user" (
 1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
 1. In the deploy section, select manual deploy
 
-## Update Documentation
 
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
 
 
 ## Checklist
