@@ -11,6 +11,7 @@ Grid
   /* defaults to 'flex-start' */
   justify-content: flex-start;
   align-items: flex-start;
+  opacity: 0.5;
 }
 
 .grid-col {
@@ -79,6 +80,4 @@ Grid
   max-width: 100%;
 }
 
-.landing-container {
-  background-image: url(https://express-images.franklymedia.com/3745/sites/5/2018/06/16024245/IMG_4708.jpg);
-}
+
