@@ -42,11 +42,12 @@ function ConcertSearchPage() {
         console.log(showSearch);
         event.preventDefault();
         axios.get(`/api/concerts/venue/${showSearch}`)
-        
+        // within this .then, API venue query inputs are acknowledged
+        // this action yields all relevant venue id's available for a searched venue
         .then(response => {
             console.log('response is:', response.data);
             console.log('inside response:', response.data.resultsPage.results.venue);
-
+            // We loop through all venue id's and push them within the venueArray variable
             const venueArray = response.data.resultsPage.results.venue;
             for(let i in venueArray) {
                 if(venueArray[i].city.displayName === 'Minneapolis') {
@@ -55,9 +56,16 @@ function ConcertSearchPage() {
                 }
                 console.log('minneapolis venue id', venueId); 
             }
+
+            // the length of the venue id array is saved as the numberOfVenues variable
             const numberOfVenues = venueId.length;
+            // we keep track of number of results as we make a api request 
             let numberOfVenueResults = 0;
             console.log(venueId);
+
+            // the following action is initiated when the search button is hit
+            // we loop through each venue id within the venueId array
+            // that venue id is incorporated within a second api request along with specified dates
             for (let i of venueId) {
                 axios.get(`/api/concerts/${i}/${dateOneSearch}/${dateTwoSearch}`)
                 .then(response => {
@@ -66,6 +74,9 @@ function ConcertSearchPage() {
                     console.log('event data', response.data.resultsPage.results.event);
                     const eventPayload = response.data.resultsPage.results.event;
                     dispatch({type: 'FETCH_CONCERTS', payload: eventPayload})
+                    // after looping through the venueId array, 
+                    // if the numberOfVenueResults equals the number of venues in the venue array
+                    // we can navigate to the results page after hitting the search button
                     if (numberOfVenues === numberOfVenueResults) {
                         history.push('/searchresults');
                     }
@@ -81,7 +92,11 @@ function ConcertSearchPage() {
     }
 
     return (
-        // from free code camp
+        // the search inputs are rendered within this return
+        // each input contains a relevant placeholder
+        // a value is set to each input's useState
+        // on change, the value of each input is set to whatever venue name or date a user chooses
+        // the click action initiates the search action
         <div class="search">
             <h2>Find Your Next Show!</h2>
             <form onSubmit={handleSubmit}>
