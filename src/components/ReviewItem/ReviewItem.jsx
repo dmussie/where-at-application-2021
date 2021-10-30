@@ -13,6 +13,7 @@ function ReviewItem({userConcert}) {
     // the saved user concert data is rendered below and displayed as a table
     // events can be deleted with the delete button
     return(
+        <>
         <tr>
             <td>{userConcert.displayName}</td>
             <td>{userConcert.city}</td>
@@ -29,6 +30,7 @@ function ReviewItem({userConcert}) {
                 </Button>
             </td>
         </tr>
+        </>
     )
 }
 
