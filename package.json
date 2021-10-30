@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:5000",
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "cookie-session": "^2.0.0-rc.1",
@@ -25,10 +26,17 @@
   "scripts": {
     "start": "node server/server.js",
     "client": "react-scripts start",
+    "apidoc": "apidoc -i server/routes -o apidoc",
     "server": "nodemon --watch server server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "jest": "NODE_EVN=test jest test/*.*.test.js --coverage --forceExit --detectOpenHandles",
     "eject": "react-scripts eject"
+  },
+  "apidoc": {
+    "title": "Where At? Solo Project Documentation",
+    "version": "1.0",
+    "description": "API Documentation for the prime solo project"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"

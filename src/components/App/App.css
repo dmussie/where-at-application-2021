@@ -2,6 +2,7 @@ html,
 body,
 #react-root {
   height: 100%;
+  font-family: 'Zen Kurenaido', sans-serif;
 }
 
 body {
@@ -29,10 +30,10 @@ Button
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  border-color: #014041;
+  border-color: #096abf;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
+  background-color: #003bb0;
   color: #f8f8f8;
   font-size: 1.1rem;
   outline: 0;
@@ -55,19 +56,19 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
+  background-color: #0b99c1;
   text-decoration: none;
 }
 
 /* This line makes the "Register" and "Login" buttons look like links */
 .btn_asLink {
-  padding: 0;
+  margin-bottom: 8px;
   border-width: 0;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid rgb(17, 249, 5);
   border-radius: 0;
   background: none;
   font: inherit;
-  color: #444;
+  color: rgb(10, 246, 65);
 }
 
 .btn_asLink:hover {
@@ -101,7 +102,7 @@ Form Treatment
   max-width: 100%;
   padding: 25px;
   margin: 0 auto 20px;
-  background-color: #efefef;
+  background-color: transparent;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
 }
@@ -110,3 +111,5 @@ input {
   margin: 5px;
   margin-bottom: 10px;
 }
+
+

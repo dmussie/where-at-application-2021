@@ -6,21 +6,14 @@ const {
     rejectUnauthenticated,
   } = require('../modules/authentication-middleware');
 
-//get artist data from songkick 
-// router.get('/:artist', (req, res) => {
-//     console.log('req.params are:', req.params.artist);
-//     axios.get(`https://api.songkick.com/api/3.0/search/artists.json?apikey=${process.env.SONGKICK_API_KEY}&query=${req.params.artist}`)
-//     .then(response => {
-//         res.send(response.data)
-//     })
-//     .catch(error => {
-//         console.log(error);
-//     }); 
-// });
-
-//perform an additional router.get to FIND a venue id
-//FAKE DATA to write saga and reducer stuff
-//
+/**
+ * @api {get} /venue/:venue Request Venue query information
+ * @apiName GetVenues
+ * @apiGroup Venue
+ *
+ *
+ * @apiSuccess {Array} venues An array of venue Id's that fall under a venue's name.
+ */
 
 router.get('/venue/:venue', rejectUnauthenticated, (req, res) => {
     console.log('req.params is:', req.params);
@@ -36,9 +29,9 @@ router.get('/venue/:venue', rejectUnauthenticated, (req, res) => {
 
 // get venue data from songkick
 // with venue ids 
-router.get('/:id', rejectUnauthenticated, (req, res) => {
+router.get('/:id/:min_date/:max_date', rejectUnauthenticated, (req, res) => {
     console.log('req.params is:', req.params);
-    axios.get(`https://api.songkick.com/api/3.0/venues/${req.params.id}/calendar.json?apikey=${process.env.SONGKICK_API_KEY}`)
+    axios.get(`https://api.songkick.com/api/3.0/venues/${req.params.id}/calendar.json?min_date=${req.params.min_date}&max_date=${req.params.max_date}&apikey=${process.env.SONGKICK_API_KEY}`)
     .then(response => {
         res.send(response.data)
     })
@@ -46,6 +39,16 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
         console.log(error);
     }); 
 });
+
+/**
+ * @api {post} /event Add a event
+ * @apiName AddEvent
+ * @apiGroup Event
+ *
+ *
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ */
 
 // TODO: Switch to Async await after presentation
 router.post('/', rejectUnauthenticated, (req, res) => {

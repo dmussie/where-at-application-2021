@@ -1,3 +1,4 @@
+// this reducer temporarily stores saved concert data 
 const savedConcertsReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_SAVED_CONCERTS':

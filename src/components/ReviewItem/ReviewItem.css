@@ -1,0 +1,8 @@
+/* Based of W3 Schools */
+a, #tickets-link {
+    color: rgb(64, 255, 0);
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+  

@@ -1,32 +1,36 @@
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import './ReviewItem.css';
 
 function ReviewItem({userConcert}) {
     const dispatch = useDispatch();
-    const history = useHistory();
 
+    // this function handles the deletion of an event upon selecting the delete button
     const removeConcert = () => {
         dispatch({type: 'DELETE_CONCERT', payload: userConcert});
     };
 
-    const editConcert = () => {
-        dispatch({type: 'EDIT_CONCERT', payload: userConcert});
-    };
+    // the saved user concert data is rendered below and displayed as a table
+    // events can be deleted with the delete button
     return(
+        <>
         <tr>
             <td>{userConcert.displayName}</td>
             <td>{userConcert.city}</td>
             <td>{userConcert.time}</td>
             <td>
-            <a href={userConcert.uri} target="_blank"> Get Tickets!</a>
+            <a id="tickets-link" href={userConcert.uri} target="_blank"> Get Tickets!</a>
             </td>
             <td>
-                <button onClick={removeConcert}>Delete Concert</button>
-            </td>
-            <td>
-                <button onClick={editConcert}>Edit</button>
+                <Button 
+                variant="contained" 
+                color="secondary" 
+                onClick={removeConcert}>
+                    Delete
+                </Button>
             </td>
         </tr>
+        </>
     )
 }
 
