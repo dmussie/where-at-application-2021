@@ -11,7 +11,6 @@ Grid
   /* defaults to 'flex-start' */
   justify-content: flex-start;
   align-items: flex-start;
-  background-image: url("public/images/powered-by-songkick-pink.png");
 }
 
 .grid-col {
