@@ -68,8 +68,78 @@ router.get('/venue/:venue', rejectUnauthenticated, (req, res) => {
     }); 
 });
 
-// get venue data from songkick
-// with venue ids 
+/**
+ * @api {get} /:id/:min_date/:max_date Request Venue query information
+ * @apiName GetEvents
+ * @apiGroup event
+ * @apiPermission user
+ * @apiDescription returns events associated with a venue's id.  
+ *
+ *
+ * @apiSuccessExample {json} Success Response:
+ * ...
+ * "event": [
+                {
+                    "id": 39855389,
+                    "displayName": "Tiësto at The Armory (October 30, 2021)",
+                    "type": "Concert",
+                    "uri": "https://www.songkick.com/concerts/39855389-tiesto-at-armory?utm_source=60230&utm_medium=partner",
+                    "status": "ok",
+                    "popularity": 0.255527,
+                    "start": {
+                        "date": "2021-10-30",
+                        "datetime": "2021-10-30T20:00:00-0500",
+                        "time": "20:00:00"
+                    },
+                    "performance": [
+                        {
+                            "id": 75328695,
+                            "displayName": "Tiësto",
+                            "billing": "headline",
+                            "billingIndex": 1,
+                            "artist": {
+                                "id": 152971,
+                                "displayName": "Tiësto",
+                                "uri": "https://www.songkick.com/artists/152971-tiesto?utm_source=60230&utm_medium=partner",
+                                "identifier": [
+                                    {
+                                        "mbid": "aabb1d9f-be12-45b3-a84d-a1fc3e8181fd",
+                                        "href": "https://api.songkick.com/api/3.0/artists/mbid:aabb1d9f-be12-45b3-a84d-a1fc3e8181fd.json"
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "ageRestriction": null,
+                    "flaggedAsEnded": false,
+                    "venue": {
+                        "id": 62500,
+                        "displayName": "The Armory",
+                        "uri": "https://www.songkick.com/venues/62500-armory?utm_source=60230&utm_medium=partner",
+                        "metroArea": {
+                            "displayName": "Twin Cities",
+                            "country": {
+                                "displayName": "US"
+                            },
+                            "state": {
+                                "displayName": "MN"
+                            },
+                            "id": 35130,
+                            "uri": "https://www.songkick.com/metro-areas/35130-us-twin-cities?utm_source=60230&utm_medium=partner"
+                        },
+                        "lat": 44.97522,
+                        "lng": -93.2635
+                    },
+                    "location": {
+                        "city": "Minneapolis, MN, US",
+                        "lat": 44.97522,
+                        "lng": -93.2635
+                    }
+                },
+    ...
+  * @apiExample Example Usage:
+    http://localhost:5000/:id/:min_date/:max_date
+ */ 
 router.get('/:id/:min_date/:max_date', rejectUnauthenticated, (req, res) => {
     console.log('req.params is:', req.params);
     axios.get(`https://api.songkick.com/api/3.0/venues/${req.params.id}/calendar.json?min_date=${req.params.min_date}&max_date=${req.params.max_date}&apikey=${process.env.SONGKICK_API_KEY}`)
