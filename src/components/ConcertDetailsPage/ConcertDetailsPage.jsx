@@ -8,11 +8,12 @@ function ConcertDetailsPage() {
     const history = useHistory();
 
     // this reducer will be mapped through in the return function
+    // this contains relevant concert details which will be rendered on the DOM
     const concerts = useSelector(store => store.concertDetailsReducer);
     console.log(concerts);
 
     const postConcert = () => {
-        // saga incorporated here to solve refresh issue on userconcerts
+       // this post route will post an event to the database if the user initiates a save action
         axios({
             method: 'POST',
             url: '/api/concerts',
@@ -24,6 +25,7 @@ function ConcertDetailsPage() {
             }
         }).then((response) => {
             console.log('Event post successful', response);
+            // if the post is successful the user is navigated to the user concerts page
             history.push('/userconcerts');
         }).catch((error) => {
             alert('Oh No! Could Not Save Event.');
@@ -34,6 +36,7 @@ function ConcertDetailsPage() {
         history.push('/searchresults')
     };
 
+    // Concert data from the reducer is rendered below to be seen on the DOM 
     return(
         <>
             <h3>Here's Some More Info On The Show!</h3>
