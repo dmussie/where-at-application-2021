@@ -18,7 +18,7 @@ function SearchItem({concert}) {
 
     // concert details are diplayed to the DOM here
     return (
-        <div class="results-item">
+        <div className="results-item">
             <p>{concert.displayName}</p>
             <Button 
             variant="text"
