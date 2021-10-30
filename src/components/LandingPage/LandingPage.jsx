@@ -14,7 +14,7 @@ function LandingPage() {
   };
 
   return (
-    <div className="container">
+    <div className="landing-container">
       <h2>{heading}</h2>
 
       <div className="grid">
