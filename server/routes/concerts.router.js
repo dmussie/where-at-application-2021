@@ -116,30 +116,30 @@ router.get('/', rejectUnauthenticated, (req, res) => {
       });
   });
 
-  router.put('/', (req, res) => {
-    const updatedConcert = req.body;
+  // router.put('/', (req, res) => {
+  //   const updatedConcert = req.body;
   
-    const queryText = `UPDATE "events"
-    SET "displayName" = $1, 
-    "city" = $2, 
-    "time" = $3, 
-    "uri" = $4 
-    WHERE "id"=$5;`;
+  //   const queryText = `UPDATE "events"
+  //   SET "displayName" = $1, 
+  //   "city" = $2, 
+  //   "time" = $3, 
+  //   "uri" = $4 
+  //   WHERE "id"=$5;`;
   
-    const queryValues = [
-      updatedConcert.displayName,
-      updatedConcert.city,
-      updatedConcert.time,
-      updatedConcert.uri,
-      updatedConcert.id,
-    ];
+  //   const queryValues = [
+  //     updatedConcert.displayName,
+  //     updatedConcert.city,
+  //     updatedConcert.time,
+  //     updatedConcert.uri,
+  //     updatedConcert.id,
+  //   ];
   
-    pool.query(queryText, queryValues)
-      .then(() => { res.sendStatus(200); })
-      .catch((err) => {
-        console.log('Error completing SELECT concert query', err);
-        res.sendStatus(500);
-      });
-  });
+  //   pool.query(queryText, queryValues)
+  //     .then(() => { res.sendStatus(200); })
+  //     .catch((err) => {
+  //       console.log('Error completing SELECT concert query', err);
+  //       res.sendStatus(500);
+  //     });
+  // });
 
 module.exports = router;
