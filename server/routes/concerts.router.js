@@ -9,10 +9,51 @@ const {
 /**
  * @api {get} /venue/:venue Request Venue query information
  * @apiName GetVenues
- * @apiGroup Venue
+ * @apiGroup venue
+ * @apiPermission user
+ * @apiDescription returns all id's and a host of other information about a venue entered by a user. 
+ * Intended to be utilized in a subsequent GET request. 
  *
  *
- * @apiSuccess {Array} venues An array of venue Id's that fall under a venue's name.
+ * @apiSuccessExample {json} Success Response:
+ * ...
+ * "venue": [
+                {
+                    "id": 62500,
+                    "displayName": "The Armory",
+                    "uri": "https://www.songkick.com/venues/62500-armory?utm_source=60230&utm_medium=partner",
+                    "metroArea": {
+                        "displayName": "Twin Cities",
+                        "country": {
+                            "displayName": "US"
+                        },
+                        "state": {
+                            "displayName": "MN"
+                        },
+                        "id": 35130,
+                        "uri": "https://www.songkick.com/metro-areas/35130-us-twin-cities?utm_source=60230&utm_medium=partner"
+                    },
+                    "lat": 44.97522,
+                    "lng": -93.2635,
+                    "street": "500 Sixth St. S.",
+                    "zip": "55415",
+                    "phone": "(612) 315-3965",
+                    "website": "http://armorymn.com/",
+                    "description": "A revitalized building from the 1930s. The most expensive building built in Minnesota at the time. \r\nAs of early 2017, the Minneapolis Armory is poised to make a triumphant return. The venue has returned to its roots - being the host to a number of social functions: concerts, sporting events, trade shows, and other private celebrations.",
+                    "capacity": 8000,
+                    "city": {
+                        "displayName": "Minneapolis",
+                        "country": {
+                            "displayName": "US"
+                        },
+                        "state": {
+                            "displayName": "MN"
+                        }
+                    }
+                },
+    ...
+  * @apiExample Example Usage:
+    http://localhost:5000/api/concerts/venue/:venue
  */
 
 router.get('/venue/:venue', rejectUnauthenticated, (req, res) => {
