@@ -6,18 +6,6 @@ const {
     rejectUnauthenticated,
   } = require('../modules/authentication-middleware');
 
-//get artist data from songkick 
-// router.get('/:artist', (req, res) => {
-//     console.log('req.params are:', req.params.artist);
-//     axios.get(`https://api.songkick.com/api/3.0/search/artists.json?apikey=${process.env.SONGKICK_API_KEY}&query=${req.params.artist}`)
-//     .then(response => {
-//         res.send(response.data)
-//     })
-//     .catch(error => {
-//         console.log(error);
-//     }); 
-// });
-
 /**
  * @api {get} /venue/:venue Request Venue query information
  * @apiName GetVenues

@@ -24,12 +24,12 @@ function ConcertReviewPage() {
         <h3>Here Are Your Upcoming Shows!</h3>
         <table>
             
-            <tr>
+            <thead>
                 <th>Event</th>
                 <th>City</th>
                 <th>Time</th>
                 <th>Event Page</th>
-            </tr>
+            </thead>
             <tbody>
                 {/* map here */}
                 {userConcertList.map((userConcert) => {

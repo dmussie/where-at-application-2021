@@ -97,7 +97,7 @@ function ConcertSearchPage() {
         // a value is set to each input's useState
         // on change, the value of each input is set to whatever venue name or date a user chooses
         // the click action initiates the search action
-        <div class="search">
+        <div className="search">
             <h2>Find Your Next Show!</h2>
             <form onSubmit={handleSubmit}>
                 Venue:<input placeholder="Venue" type="text" value={showSearch} 

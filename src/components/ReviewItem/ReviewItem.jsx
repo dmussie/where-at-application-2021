@@ -5,15 +5,13 @@ import './ReviewItem.css';
 function ReviewItem({userConcert}) {
     const dispatch = useDispatch();
 
+    // this function handles the deletion of an event upon selecting the delete button
     const removeConcert = () => {
         dispatch({type: 'DELETE_CONCERT', payload: userConcert});
     };
 
-    // const editConcert = () => {
-    //     dispatch({type: 'EDIT_CONCERT', payload: userConcert});
-    // };
-    //MUI Table down below??
-    //chart.js?
+    // the saved user concert data is rendered below and displayed as a table
+    // events can be deleted with the delete button
     return(
         <tr>
             <td>{userConcert.displayName}</td>
@@ -30,9 +28,6 @@ function ReviewItem({userConcert}) {
                     Delete
                 </Button>
             </td>
-            {/* <td>
-                <button onClick={editConcert}>Edit</button>
-            </td> */}
         </tr>
     )
 }
