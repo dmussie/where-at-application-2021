@@ -76,53 +76,6 @@ Thanks to Prime Digital Academy for providing the tools and guidance to make thi
 ## Support
 If you have any suggestions or issues, please email me at dannymussie7@gmail.com
 
-## Deployment
-
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
 
 
 
-
-## Checklist
-
-# Get started
-[x] - Create a new database called `where_at` and create a `user` table:
-[x] - Create rest of tables for project
-[x] - Update user router to account for additional registration information
-[x] - Check if user routes have been established
-[x] - Check if user authentication is properly established
-
-
-# Concert/Venue Search Route
-[x] - create concert.router.js
-  [x] - link songkick api
-  [x] - create router.get
-  [x] - create router.delete
-  [] - create router.put?
-[x] - save local Twin Cities venues to table
-  [x] - columns: id, songkick_id, venue_name
-  [x] - input data based on venue query searches and pulling songkick id's
-[] - create concerts.sagas.js
-[] - create concerts.reducer.js
-[x] - create SearchConcerts folder and file
-[x] - create SearchResults folder and file
-[x] - create ConcertDetails folder and file
-[x] - create ConcertReview folder and file
-
-# API Documentation/Testing
-[] - Add API documentation to API requests on the concert.router
-[] - Select a reducer (other than user) and run a unit test
-[] - STRETCH: look into integration testing for API concert data
-
-# Stretch Miscelaneous Features
-[x] - Event URL enable click action and navigation to event page
-[] - Link Spotify to Sign Up page
-  [] - linked users can bypass search page and navigate to results based on Spotify interests
-[] - Display map of concerts search page
-[] - Material UI styling
