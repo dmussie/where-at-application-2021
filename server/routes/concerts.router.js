@@ -201,7 +201,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 // get event id from the user_events database to then utilized router.get('/:id')
 router.get('/', rejectUnauthenticated, (req, res) => {
-    // Add query to get all genres
+    // Add query to get all concerts
     console.log('in router.get');
     const query = `SELECT * FROM "user_events" 
 	JOIN "events" ON "events"."id" = "user_events"."event_id"
@@ -226,31 +226,5 @@ router.get('/', rejectUnauthenticated, (req, res) => {
         res.sendStatus(500);
       });
   });
-
-  // router.put('/', (req, res) => {
-  //   const updatedConcert = req.body;
-  
-  //   const queryText = `UPDATE "events"
-  //   SET "displayName" = $1, 
-  //   "city" = $2, 
-  //   "time" = $3, 
-  //   "uri" = $4 
-  //   WHERE "id"=$5;`;
-  
-  //   const queryValues = [
-  //     updatedConcert.displayName,
-  //     updatedConcert.city,
-  //     updatedConcert.time,
-  //     updatedConcert.uri,
-  //     updatedConcert.id,
-  //   ];
-  
-  //   pool.query(queryText, queryValues)
-  //     .then(() => { res.sendStatus(200); })
-  //     .catch((err) => {
-  //       console.log('Error completing SELECT concert query', err);
-  //       res.sendStatus(500);
-  //     });
-  // });
 
 module.exports = router;
