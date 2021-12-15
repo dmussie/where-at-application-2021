@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import ReviewItem from '../ReviewItem/ReviewItem';
 
@@ -6,9 +6,11 @@ import ReviewItem from '../ReviewItem/ReviewItem';
 function ConcertReviewPage() {
     const dispatch = useDispatch();
 
+    const [openModal, setOpenModal] = useState(false);
+
     // this reducer contains concert data pulled from the database
-    const userConcertList = useSelector(store => store.savedConcertsReducer);
-    console.log('user concerts from database', userConcertList);
+    const rows = useSelector(store => store.savedConcertsReducer);
+    console.log('user concerts from database', rows);
     // this action handles pulling this database table to this component
     const getConcerts = () => {
         dispatch({type: 'FETCH_SAVED_CONCERTS'});
@@ -24,24 +26,12 @@ function ConcertReviewPage() {
     // data is passed via props to the review item child component to complete the mapping process and thus complete the table
     return (
         <>
-        <h3>Here Are Your Upcoming Shows!</h3>
-        <table>
-            
-            <thead>
-                <th>Event</th>
-                <th>City</th>
-                <th>Time</th>
-                <th>Event Page</th>
-            </thead>
-            <tbody>
-                {userConcertList.map((userConcert) => {
-                    return(<ReviewItem key={userConcert.id} userConcert={userConcert}/>)
-                })}
-            </tbody>
-            
-            
-            
-        </table>
+        {openModal ? <p></p> :
+            <div className="top-of-table"><h3>Here Are Your Upcoming Shows!</h3></div>
+        }
+        {openModal ? <p></p> :
+            <ReviewItem rows={rows} />
+        }
         </>
         
     )

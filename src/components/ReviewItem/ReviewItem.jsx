@@ -1,8 +1,9 @@
 import { useDispatch } from 'react-redux';
+import { DataGrid } from '@mui/x-data-grid';
 import Button from '@material-ui/core/Button';
 import './ReviewItem.css';
 
-function ReviewItem({userConcert}) {
+function ReviewItem({rows}) {
     const dispatch = useDispatch();
 
     const columns = [
@@ -23,23 +24,34 @@ function ReviewItem({userConcert}) {
     // events can be deleted with the delete button
     return(
         <>
-        <tr>
-            <td>{userConcert.displayName}</td>
-            <td>{userConcert.city}</td>
-            <td>{userConcert.time}</td>
-            <td>
-            <a id="tickets-link" href={userConcert.uri} target="_blank"> Get Tickets!</a>
-            </td>
-            <td>
-                <Button 
-                variant="contained" 
-                color="secondary" 
-                onClick={removeConcert}>
-                    Delete
-                </Button>
-            </td>
-        </tr>
+            <div style={{ height: 500, width: '100%' }}>
+                            <DataGrid
+                                rows={rows}
+                                columns={columns}
+                                pageSize={8}
+                                rowsPerPageOptions={[8]}
+                                checkboxSelection
+                                disableSelectionOnClick
+                            />
+            </div>
         </>
+        // <tr>
+        //     <td>{userConcert.displayName}</td>
+        //     <td>{userConcert.city}</td>
+        //     <td>{userConcert.time}</td>
+        //     <td>
+        //     <a id="tickets-link" href={userConcert.uri} target="_blank"> Get Tickets!</a>
+        //     </td>
+        //     <td>
+        //         <Button 
+        //         variant="contained" 
+        //         color="secondary" 
+        //         onClick={removeConcert}>
+        //             Delete
+        //         </Button>
+        //     </td>
+        // </tr>
+        // </>
     )
 }
 
