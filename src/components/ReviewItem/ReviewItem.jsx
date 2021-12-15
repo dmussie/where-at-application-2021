@@ -5,6 +5,15 @@ import './ReviewItem.css';
 function ReviewItem({userConcert}) {
     const dispatch = useDispatch();
 
+    const columns = [
+        {field: 'displayName', headerName: 'Event', width: 700},
+        {field: 'city', headerName: 'City', width: 150},
+        {field: 'time', headerName: 'Time', width: 150},
+        {field: 'uri', headerName: 'Event Page', width: 200, renderCell: (params) => {
+            return <Button style={{ backgroundColor: '#E7F2F8' }} variant="contained"><a style={{ color: 'black', fontWeight: '500' }} href={`https://${params.row.uri}`} target="_blank">Get Tickets!</a></Button>
+        }}
+    ]
+
     // this function handles the deletion of an event upon selecting the delete button
     const removeConcert = () => {
         dispatch({type: 'DELETE_CONCERT', payload: userConcert});
