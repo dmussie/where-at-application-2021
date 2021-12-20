@@ -1,4 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import {  
+    TableContainer,
+    Table,
+    TableHead,
+    TableRow,
+    TableCell,
+    TableBody,
+    Paper,
+} from '@mui/material';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import ReviewItem from '../ReviewItem/ReviewItem';
 
@@ -6,11 +15,9 @@ import ReviewItem from '../ReviewItem/ReviewItem';
 function ConcertReviewPage() {
     const dispatch = useDispatch();
 
-    const [openModal, setOpenModal] = useState(false);
-
     // this reducer contains concert data pulled from the database
-    const rows = useSelector(store => store.savedConcertsReducer);
-    console.log('user concerts from database', rows);
+    const userConcertsList = useSelector(store => store.savedConcertsReducer);
+    console.log('user concerts from database', userConcertsList);
     // this action handles pulling this database table to this component
     const getConcerts = () => {
         dispatch({type: 'FETCH_SAVED_CONCERTS'});
@@ -21,19 +28,37 @@ function ConcertReviewPage() {
         getConcerts();
     }, []);
 
+    const showConcerts = userConcertsList ? true: false;
+
     // rendering the saved concert data into a table is performed here
     // we're initiating the mapping of our reducer here
     // data is passed via props to the review item child component to complete the mapping process and thus complete the table
     return (
         <>
-        {openModal ? <p></p> :
-            <div className="top-of-table"><h3>Here Are Your Upcoming Shows!</h3></div>
-        }
-        {openModal ? <p></p> :
-            <ReviewItem rows={rows} />
-        }
+        <div className="user-concertlist-container">
+            <h2>Your Upcoming Shows!</h2>
+            {showConcerts &&
+            (<TableContainer component={Paper}>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Event</TableCell>
+                            <TableCell>City</TableCell>
+                            <TableCell>Time</TableCell>
+                            <TableCell>Event Page</TableCell>
+                            <TableCell>Delete Concert</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {userConcertsList.map((userConcerts) => {
+                            return(<ReviewItem key={userConcerts.id} userConcerts={userConcerts} />)
+                        })}
+                    </TableBody>
+                </Table>
+            </TableContainer>)
+            }
+        </div>
         </>
-        
     )
 };
 
