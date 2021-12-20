@@ -10,7 +10,6 @@ function SearchResultsPage() {
 
     // this reducer will be mapped through in the return function
     const concerts = useSelector(store => store.concertsReducer);
-    console.log(concerts);
     
     // returned data will be mapped through and displayed
     // the mapping process is initiated in this component 

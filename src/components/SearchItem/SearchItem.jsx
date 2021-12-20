@@ -11,7 +11,6 @@ function SearchItem({concert}) {
     // this function handles initiating the action of collecting neccessary concert data from the API
     // the user is then navigated to the details page
     const viewConcertDetails = () => {
-        console.log(concert);
         dispatch({type: 'FETCH_CONCERT_DETAILS', payload: concert})
         history.push('/concertdetails');
     }
