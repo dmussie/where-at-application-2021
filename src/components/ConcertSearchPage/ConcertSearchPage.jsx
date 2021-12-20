@@ -20,18 +20,15 @@ function ConcertSearchPage() {
     const [dateTwoSearch, setDateTwoSearch] = useState('');
     const [results, setResults] = useState([]);
 
-    //TODO saga with the get? 
+    
     const handleSubmit = (event) => {
-        console.log(event);
-        console.log(showSearch);
         event.preventDefault();
         axios.get(`/api/concerts/${showSearch}`)
         .then(response => {
-            console.log('response is:', response.data);
-            console.log('search results are:', results);
             setResults(response.data);
         }).catch(error => {
             console.log('error in handleSubmit', error);
+            alert('error conducting search.');
         })
     }
 
@@ -45,16 +42,13 @@ function ConcertSearchPage() {
         // within this .then, API venue query inputs are acknowledged
         // this action yields all relevant venue id's available for a searched venue
         .then(response => {
-            console.log('response is:', response.data);
-            console.log('inside response:', response.data.resultsPage.results.venue);
             // We loop through all venue id's and push them within the venueArray variable
             const venueArray = response.data.resultsPage.results.venue;
             for(let i in venueArray) {
                 if(venueArray[i].city.displayName === 'Minneapolis') {
                    venueId.push(venueArray[i].id);
                      
-                }
-                console.log('minneapolis venue id', venueId); 
+                } 
             }
 
             // the length of the venue id array is saved as the numberOfVenues variable
@@ -70,8 +64,6 @@ function ConcertSearchPage() {
                 axios.get(`/api/concerts/${i}/${dateOneSearch}/${dateTwoSearch}`)
                 .then(response => {
                     numberOfVenueResults += 1;
-                    console.log('inside venueId loop', i, response);
-                    console.log('event data', response.data.resultsPage.results.event);
                     const eventPayload = response.data.resultsPage.results.event;
                     dispatch({type: 'FETCH_CONCERTS', payload: eventPayload})
                     // after looping through the venueId array, 

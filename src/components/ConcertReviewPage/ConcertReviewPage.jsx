@@ -17,14 +17,13 @@ function ConcertReviewPage() {
 
     // this reducer contains concert data pulled from the database
     const userConcertsList = useSelector(store => store.savedConcertsReducer);
-    console.log('user concerts from database', userConcertsList);
+    
     // this action handles pulling this database table to this component
     const getConcerts = () => {
         dispatch({type: 'FETCH_SAVED_CONCERTS'});
     };
     // this useEffect allows us to initiate rendering the concert data after page load
     useEffect(() => {
-        console.log('getConcerts activated');
         getConcerts();
     }, []);
 

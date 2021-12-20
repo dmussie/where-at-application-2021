@@ -4,13 +4,11 @@ import axios from 'axios';
 import Button from '@material-ui/core/Button';
 
 function ConcertDetailsPage() {
-    const dispatch = useDispatch();
     const history = useHistory();
 
     // this reducer will be mapped through in the return function
     // this contains relevant concert details which will be rendered on the DOM
     const concerts = useSelector(store => store.concertDetailsReducer);
-    console.log(concerts);
 
     const postConcert = () => {
        // this post route will post an event to the database if the user initiates a save action
@@ -24,7 +22,6 @@ function ConcertDetailsPage() {
                 uri: concerts.uri
             }
         }).then((response) => {
-            console.log('Event post successful', response);
             // if the post is successful the user is navigated to the user concerts page
             history.push('/userconcerts');
         }).catch((error) => {
